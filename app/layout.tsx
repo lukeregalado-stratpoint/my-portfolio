@@ -70,7 +70,7 @@ export default function RootLayout({
         {/* Footer */}
         <footer className="border-t border-[#3DAB7A]/10 backdrop-blur-xl bg-white/[0.02] px-6 md:px-16 lg:px-32 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-mono text-xs text-[#7A9E8A]">
-            © {new Date().getFullYear()} Luke Regalado
+            {new Date().getFullYear()} Luke Regalado
           </p>
           <div className="flex gap-6">
             {[

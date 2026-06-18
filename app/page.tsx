@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Luke Regalado — Software Engineer",
+  title: "Luke Regalado | Software Engineer",
   description:
     "Portfolio of Luke Regalado, a software engineer building clean, fast, and thoughtful web experiences.",
   openGraph: {
-    title: "Luke Regalado — Software Engineer",
+    title: "Luke Regalado | Software Engineer",
     description:
       "Portfolio of Luke Regalado, a software engineer building clean, fast, and thoughtful web experiences.",
     url: "https://lukeregalado.dev",
@@ -21,10 +21,10 @@ export default function HomePage() {
     <main className="min-h-screen text-[#E8F0EC] flex flex-col">
 
       {/* Hero */}
-      <section className="flex flex-col justify-center flex-1 px-6 md:px-16 lg:px-32 pt-32 pb-24">
+      <section className="flex flex-col items-start justify-center flex-1 px-6 md:px-16 lg:px-32 pt-32 pb-24">
 
         {/* Floating glass card */}
-        <div className="backdrop-blur-2xl bg-white/[0.03] border border-[#3DAB7A]/15 rounded-3xl p-6   md:p-16 max-w-3xl shadow-[0_8px_64px_rgba(61,171,122,0.06)]">
+        <div className="backdrop-blur-2xl bg-white/[0.03] border border-[#3DAB7A]/15 rounded-3xl p-10 md:p-10 max-w-3xl shadow-[0_8px_64px_rgba(61,171,122,0.06)]">
           <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase mb-6">
             Hey, I'm
           </p>

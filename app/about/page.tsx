@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About — Luke Regalado",
+  title: "About | Luke Regalado",
   description:
     "Learn more about Luke Regalado, a software engineer based in Manila, Philippines.",
 };
@@ -22,8 +22,8 @@ const timeline = [
   {
     year: "2022",
     role: "BS Computer Science",
-    company: "University of Santo Tomas",
-    desc: "Graduated with a focus on software engineering and web development.",
+    company: "De La Salle University - Manila",
+    desc: "Currently studying with a major in Software Technology.",
   },
 ];
 

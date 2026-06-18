@@ -3,7 +3,7 @@ import { projects } from "./data";
 import ProjectCard from "@/components/ProjectCard";
 
 export const metadata: Metadata = {
-  title: "Projects — Luke Regalado",
+  title: "Projects | Luke Regalado",
   description:
     "A collection of projects built by Luke Regalado — web apps, APIs, and tools.",
 };
@@ -28,13 +28,13 @@ export default async function ProjectsPage() {
             Projects
           </h1>
           <p className="text-[#7A9E8A] text-base max-w-xl leading-relaxed">
-            Things I&apos;ve built — personal projects, freelance work, and experiments.
+            Things I've built • Personal projects, freelance work, and experiments.
             All source code is on GitHub.
           </p>
         </div>
 
         {/* Count pill */}
-        <div className="flex items-center gap-3 mb-8 backdrop-blur-md bg-white/[0.03] border border-[#3DAB7A]/12 rounded-full px-5 py-2 w-fit">
+        <div className="flex items-center gap-3 mb-8 backdrop-blur-md bg-white/[0.03] border border-[#3DAB7A]/12 rounded-full px-5 py-2 w-fit mt-1 mb-0.5">
           <span className="font-mono text-xs text-[#7A9E8A]">
             {data.length} projects
           </span>
