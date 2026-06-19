@@ -15,7 +15,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
   const [animating, setAnimating] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
   const floatTRef = useRef(0);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number>(0);
   const floatPhases = useRef(projects.map((_, i) => i * 1.3));
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const currentRef = useRef(0);
@@ -30,7 +30,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
   function slotX(slot: number) {
     const stageW = stageRef.current?.offsetWidth ?? 680;
     return stageW / 2 - CARD_W / 2 + slot * GAP;
-  }
+        }
 
   function applyPositions(transition: boolean) {
     const cur = currentRef.current;
