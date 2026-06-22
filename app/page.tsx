@@ -1,95 +1,90 @@
 import type { Metadata } from "next";
-import { ProjectCarousel } from "@/components/ProjectCarousel";
+import { Kalam } from "next/font/google";
+
+const kalam = Kalam({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-kalam",
+});
 
 export const metadata: Metadata = {
-  title: "Luke Regalado — Software Engineer",
+  title: "Luke Regalado",
   description:
-    "Portfolio of Luke Regalado, a software engineer building clean, fast, and thoughtful web experiences.",
-  openGraph: {
-    title: "Luke Regalado — Software Engineer",
-    description:
-      "Portfolio of Luke Regalado, a software engineer building clean, fast, and thoughtful web experiences.",
-    url: "https://lukeregalado.dev",
-    siteName: "Luke Regalado",
-    locale: "en_US",
-    type: "website",
-  },
+    "Luke Regalado - developer portfolio. Web apps, APIs, and tools.",
 };
-
-export const projects = [
-  { name: "AL-RESERVE-APP", tag: "Workspace reservations", href: "/projects/al-reserve-app" },
-  { name: "AMS", tag: "Activity management system", href: "/projects/ams" },
-  { name: "Auth refactor", tag: "JWT + Clean Architecture", href: "/projects/auth-refactor" },
-  { name: "Calendar view", tag: "Day / week navigation", href: "/projects/calendar-view" },
-];
-
-const techStack = ["React", "TypeScript", "Next.js", "Node.js", "Express", "PostgreSQL"];
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen text-[#E8F0EC] flex flex-col overflow-visible">
-      <section className="relative flex-1 px-8 md:px-16 lg:px-24 pt-32 pb-24 flex items-center overflow-visible">
+    <main className={`min-h-screen w-full bg-[#FCFBF4] text-[#2A2622]`}>
+      <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
 
-        {/* Left side */}
-        <div className="hidden lg:flex flex-col items-start gap-4 w-48 shrink-0">
-          <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase">
-            Full-stack dev
-          </p>
-          <p className="text-[#7A9E8A] text-sm leading-relaxed max-w-[10rem]">
-            Building clean, maintainable reservation and management systems.
-          </p>
-          <div className="w-px h-16 bg-gradient-to-b from-[#3DAB7A]/40 to-transparent mt-2" />
-        </div>
-
-        {/* Center */}
-        <div className="flex-1 flex flex-col items-center justify-center gap-10 overflow-visible">
-          <div className="text-center max-w-md">
-            <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase mb-3">
-              Selected work
-            </p>
-            <h1 className="font-mono text-3xl md:text-4xl font-bold tracking-tight text-[#E8F0EC]">
-              Projects
-            </h1>
+        {/* Left column */}
+        <div className="flex flex-col pl-50">
+          {/* <div className="p-10 border border-dashed border-[#2A2622]/20">row 1</div> */}
+          <div className="flex-1 flex flex-col justify-center">
+            <div className="p-10 pb-2 border border-dashed border-[#2A2622]/20 w-auto mx-auto">
+              <img src="/portfolio_header.png" alt="Portfolio header" className="w-full h-auto" />
+            </div>
+            <div className="pr-96 border border-dashed border-[#2A2622]/20 w-auto mx-auto">
+              <div className="flex gap-4">
+                <a 
+                  href="https://linkedin.com/in/luke-regalado"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 font-mono text-xs tracking-widest text-[#5C564C] hover:text-[#C75D3D] transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                    <rect width="4" height="12" x="2" y="9" />
+                    <circle cx="4" cy="4" r="2" />
+                  </svg>
+                  linkedin
+                </a>
+                <a
+                  href="https://github.com/lukeregalado"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 font-mono text-xs tracking-widest text-[#5C564C] hover:text-[#C75D3D] transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                  </svg>
+                  github
+                </a>
+                <a
+                  href="mailto:luke.m.regalado@gmail.com"
+                  className="flex items-center gap-2 font-mono text-xs tracking-widest text-[#5C564C] hover:text-[#C75D3D] transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                  email
+                </a>
+              </div>
+            </div>
           </div>
-
-          <ProjectCarousel projects={projects} />
-
-          <p className="font-mono text-[#4A6A5A] text-xs tracking-widest uppercase">
-            click to cycle
-          </p>
+          {/* <div className="p-10 border border-dashed border-[#2A2622]/20">row 4</div> */}
         </div>
 
-        {/* Right side */}
-        <div className="hidden lg:flex flex-col items-end gap-3 w-48 shrink-0">
-          <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase mb-2">
-            Stack
-          </p>
-          {techStack.map((tech) => (
-            <span
-              key={tech}
-              className="font-mono text-xs tracking-wide text-[#7A9E8A] backdrop-blur-md bg-white/[0.03] border border-[#3DAB7A]/15 rounded-full px-4 py-1.5 hover:text-[#E8F0EC] hover:border-[#3DAB7A]/35 transition-colors"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* Stats strip */}
-      <section className="mx-8 md:mx-16 lg:mx-32 mb-24 relative backdrop-blur-xl bg-white/[0.02] border border-[#3DAB7A]/10 rounded-2xl px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 shadow-[0_0_40px_rgba(61,171,122,0.06)]">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2D8A62]/20 to-transparent rounded-t-2xl" />
-        {[
-          { value: "2+", label: "Years experience" },
-          { value: "5+", label: "Projects developed" },
-          { value: "React", label: "Primary stack" },
-          { value: "PH", label: "Based in Manila" },
-        ].map(({ value, label }) => (
-          <div key={label}>
-            <p className="font-mono text-3xl font-bold text-[#E8F0EC]">{value}</p>
-            <p className="text-[#4A6A5A] text-sm mt-1">{label}</p>
+        {/* Right column */}
+        <div className="flex flex-col">
+          {/* <div className="p-10 border border-dashed border-[#2A2622]/20">row 1</div> */}
+          <div className="flex-1 flex flex-col justify-center">
+            <div className="p-10 pb-0 border border-dashed border-[#2A2622]/20 w-xl mx-auto">
+              <img src="/me.gif" alt="Luke Regalado self-portrait" className="w-full h-auto" />
+            </div>
+            <div className="p-10 pt-0 border border-dashed border-[#2A2622]/20 w-2/3 mx-auto">
+              <p className="font-mono text-2xl tracking-widest text-[#5C564C] leading-relaxed">
+                A developer who enjoys building purposeful and creative solutions through clean, thoughtful code. Curious by nature, driven by ingenuity.
+              </p>
+            </div>
           </div>
-        ))}
-      </section>
+          {/* <div className="p-10 border border-dashed border-[#2A2622]/20">row 4</div> */}
+        </div>
+
+      </div>
     </main>
   );
 }

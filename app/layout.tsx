@@ -32,44 +32,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#060A07] text-[#E8F0EC]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#FCFBF4] text-[#2A2622]`}
       >
-        {/* Global ambient background */}
-        <div className="fixed inset-0 -z-10 bg-[#060A07]">
-          {/* Jade glow — top left */}
-          <div className="absolute top-[-10%] left-[-5%] w-[650px] h-[650px] bg-[#3DAB7A]/14 rounded-full blur-[160px]" />
-          {/* Amber glow — top right */}
-          <div className="absolute top-[5%] right-[-5%] w-[500px] h-[500px] bg-[#2D8A62]/10 rounded-full blur-[140px]" />
-          {/* Deep jade — bottom center */}
-          <div className="absolute bottom-[-5%] left-[25%] w-[600px] h-[400px] bg-[#1A6B47]/12 rounded-full blur-[150px]" />
-          {/* Deep jade — bottom right */}
-          <div className="absolute bottom-[15%] right-[5%] w-[350px] h-[350px] bg-[#2D8A62]/7 rounded-full blur-[100px]" />
-          {/* Noise grain */}
-          <div
-            className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-              backgroundRepeat: "repeat",
-              backgroundSize: "128px 128px",
-            }}
-          />
-        </div>
-
         {/* Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-2xl bg-[#060A07]/50 border-b border-[#3DAB7A]/10">
-          <div className="max-w-6xl mx-auto px-6 md:px-16 h-14 flex items-center justify-between">
+        <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#FCFBF4]/80 border-b border-[#2A2622]/10">
+          <div className="w-full mx-auto px-6 md:px-16 h-14 flex items-center justify-between">
             <Link
               href="/"
-              className="font-mono text-sm font-bold text-[#3DAB7A] tracking-widest hover:opacity-70 transition-opacity"
+              className="font-mono text-sm font-bold text-[#C75D3D] tracking-widest hover:opacity-70 transition-opacity"
             >
-              LR
+              <img src="/luke-regalado-nametag.png" alt="Luke Regalado - Home" className="w-2/12 ml-40 h-auto" />
             </Link>
             <nav className="flex items-center gap-8">
               {navLinks.map(({ href, label }) => (
                 <Link
                   key={href}
                   href={href}
-                  className="font-mono text-xs tracking-widest text-[#7A9E8A] hover:text-[#E8F0EC] transition-colors uppercase"
+                  className="font-mono text-xs tracking-widest text-[#5C564C] hover:text-[#2A2622] transition-colors uppercase"
                 >
                   {label}
                 </Link>
@@ -81,25 +60,25 @@ export default function RootLayout({
         {children}
 
         {/* Footer */}
-        <footer className="border-t border-[#3DAB7A]/10 backdrop-blur-xl bg-white/[0.01] px-6 md:px-16 lg:px-32 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-mono text-xs text-[#4A6A5A]">
+        <footer className="border-t border-[#2A2622]/10 bg-[#FCFBF4] px-6 md:px-16 lg:px-32 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-mono text-xs text-[#8A8378]">
             © {new Date().getFullYear()} Luke Regalado
           </p>
           <div className="flex gap-6">
             {[
               { label: "GitHub", href: "https://github.com/lukeregalado" },
-              { label: "LinkedIn", href: "#" },
-              { label: "Email", href: "mailto:luke@example.com" },
+              { label: "LinkedIn", href: "https://linkedin.com/in/luke-regalado" },
+              { label: "Email", href: "mailto:luke.m.regalado@gmail.com" },
             ].map(({ label, href }) => (
-              <a
+              <Link
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-xs text-[#4A6A5A] hover:text-[#3DAB7A] transition-colors"
+                className="font-mono text-xs text-[#8A8378] hover:text-[#C75D3D] transition-colors"
               >
                 {label}
-              </a>
+              </Link>
             ))}
           </div>
         </footer>
