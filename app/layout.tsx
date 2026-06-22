@@ -44,7 +44,7 @@ export default function RootLayout({
         {children}
 
         {/* Footer */}
-        <footer className="border-t border-[#2A2622]/10 bg-[#FCFBF4] px-6 md:px-16 lg:px-32 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <footer className="px-6 md:px-16 lg:px-32 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-mono text-xs text-[#8A8378]">
             © {new Date().getFullYear()} Luke Regalado
           </p>
