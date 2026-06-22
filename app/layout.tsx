@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import NavBar from "@/components/NavBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,12 +19,6 @@ export const metadata: Metadata = {
   description: "Software Engineer Portfolio",
 };
 
-const navLinks = [
-  { href: "/", label: "home" },
-  { href: "/about", label: "about" },
-  { href: "/projects", label: "projects" },
-];
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,29 +26,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#FCFBF4] text-[#2A2622]`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#FCFBF4] text-[#2A2622] h-lvh flex flex-col`}>
         {/* Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#FCFBF4]/80 border-b border-[#2A2622]/10">
-          <div className="w-full mx-auto px-6 md:px-16 h-14 flex items-center justify-between">
-            <Link
-              href="/"
-              className="font-mono text-sm font-bold text-[#C75D3D] tracking-widest hover:opacity-70 transition-opacity"
-            >
-              <img src="/luke-regalado-nametag.png" alt="Luke Regalado - Home" className="w-2/12 ml-40 h-auto" />
+        <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#2A2622]/10 bg-[#E8E0D0]">
+          <div className="px-8 h-14 flex items-center justify-between">
+            <Link href="/" className="group">
+              <img
+                src="/luke-regalado-nametag.png"
+                alt="Luke Regalado - Home"
+                className="w-2/12 ml-10 h-auto opacity-100 transition-all duration-300 ease-out group-hover:opacity-70 group-active:opacity-50 group-active:scale-95"
+              />
             </Link>
-            <nav className="flex items-center gap-8">
-              {navLinks.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="font-mono text-xs tracking-widest text-[#5C564C] hover:text-[#2A2622] transition-colors uppercase"
-                >
-                  {label}
-                </Link>
-              ))}
-            </nav>
+            <NavBar />
           </div>
         </header>
 
