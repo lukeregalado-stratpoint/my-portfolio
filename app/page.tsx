@@ -36,22 +36,20 @@ export default function HomePage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 flex-1 min-h-0">
 
-        {/* Left column */}
-        <div className="flex flex-col pl-50">
-          <div className="flex-1 flex flex-col justify-center">
-            {/* Shared positioning container - NOT elevated itself */}
-            <div className="relative p-10 pb-2 w-auto mx-auto">
-
-              {/* Header wrapper - elevated above blackout, header always visible */}
-              <div className="relative z-101">
-                <PortfolioHeader />
-              </div>
-
-              <SocialLinks />
-
-            </div>
-          </div>
-        </div>
+{/* Left column */}
+<div className="flex flex-col pl-50">
+  <div className="flex-1 flex flex-col justify-center">
+    <div className="relative p-10 pb-2 w-auto mx-auto">
+      <div className="relative z-101">
+        <PortfolioHeader />
+      </div>
+      {/* positioned relative to the container, not the header */}
+      <div className="absolute" style={{ bottom: '-13%', left: '-5%' }}>
+        <SocialLinks />
+      </div>
+    </div>
+  </div>
+</div>
 
         {/* Right column */}
         <div className="flex flex-col">
