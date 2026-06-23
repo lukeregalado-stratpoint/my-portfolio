@@ -1,11 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-
-export type Project = {
-  name: string;
-  tag: string;
-  href: string;
-};
+import { useRouter } from "next/navigation";
+import type { Project } from "@/app/projects/data";
 
 const CARD_W = 260;
 const GAP = 300;
@@ -20,6 +16,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const currentRef = useRef(0);
   const n = projects.length;
+  const router = useRouter();
 
   function getSlot(cardIdx: number, cur: number) {
     let diff = (cardIdx - cur + n) % n;
@@ -30,7 +27,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
   function slotX(slot: number) {
     const stageW = stageRef.current?.offsetWidth ?? 680;
     return stageW / 2 - CARD_W / 2 + slot * GAP;
-        }
+  }
 
   function applyPositions(transition: boolean) {
     const cur = currentRef.current;
@@ -106,16 +103,23 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
 
   return (
     <div className="flex flex-col items-center gap-8 overflow-visible w-full">
-      {/* Stage */}
-      <div ref={stageRef} className="relative w-full h-[380px] overflow-visible">
+      <div ref={stageRef} className="relative w-full h-380px overflow-visible">
         {projects.map((project, i) => (
           <div
-            key={project.name}
+            key={project.slug}
             ref={(el) => { cardRefs.current[i] = el; }}
-            className="absolute top-0 w-[260px] h-[340px] flex flex-col justify-end p-7 gap-1.5 overflow-hidden"
+            onClick={() => {
+              const slot = getSlot(i, current);
+              if (slot === 0) {
+                if (project.longDescription) router.push(`/projects/${project.slug}`);
+              } else {
+                go(slot > 0 ? 1 : -1);
+              }
+            }}
+            className="absolute top-0 w-260px h-340px flex flex-col justify-end p-7 gap-1.5 overflow-hidden cursor-pointer"
             style={{ borderRadius: "24px 24px 32px 32px" }}
           >
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#3DAB7A]/50 to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#3DAB7A]/50 to-transparent" />
             <div
               className="carousel-glow absolute inset-0 pointer-events-none transition-opacity duration-500"
               style={{
@@ -130,22 +134,26 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
               Project
             </span>
             <p className="font-mono text-base font-bold text-[#E8F0EC] tracking-tight">
-              {project.name}
+              {project.title} 
             </p>
             <p className="font-mono text-xs text-[#7A9E8A] leading-relaxed">
               {project.tag}
             </p>
+            {getSlot(i, current) === 0 && project.longDescription && (
+              <span className="font-mono text-[9px] tracking-widest uppercase text-[#3DAB7A]/40 mt-2">
+                view project →
+              </span>
+            )}
           </div>
         ))}
       </div>
 
-      {/* Controls */}
       <div className="flex items-center gap-3">
         <button
           type="button"
           aria-label="Previous project"
           onClick={() => go(-1)}
-          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/[0.03] border border-[#3DAB7A]/20 text-[#7A9E8A] hover:text-[#E8F0EC] hover:border-[#3DAB7A]/40 transition-colors flex items-center justify-center text-lg"
+          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/0.03 border border-[#3DAB7A]/20 text-[#7A9E8A] hover:text-[#E8F0EC] hover:border-[#3DAB7A]/40 transition-colors flex items-center justify-center text-lg"
         >
           ‹
         </button>
@@ -167,7 +175,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
           type="button"
           aria-label="Next project"
           onClick={() => go(1)}
-          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/[0.03] border border-[#3DAB7A]/20 text-[#7A9E8A] hover:text-[#E8F0EC] hover:border-[#3DAB7A]/40 transition-colors flex items-center justify-center text-lg"
+          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/0.03 border border-[#3DAB7A]/20 text-[#7A9E8A] hover:text-[#E8F0EC] hover:border-[#3DAB7A]/40 transition-colors flex items-center justify-center text-lg"
         >
           ›
         </button>

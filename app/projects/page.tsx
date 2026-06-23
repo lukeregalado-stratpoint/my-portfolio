@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
+import { projects } from "@/app/projects/data";
 
 export const metadata: Metadata = {
   title: "Luke Regalado — Software Engineer",
@@ -16,12 +17,12 @@ export const metadata: Metadata = {
   },
 };
 
-export const projects = [
-  { name: "AL-RESERVE-APP", tag: "Workspace reservations", href: "/projects/al-reserve-app" },
-  { name: "AMS", tag: "Activity management system", href: "/projects/ams" },
-  { name: "Auth refactor", tag: "JWT + Clean Architecture", href: "/projects/auth-refactor" },
-  { name: "Calendar view", tag: "Day / week navigation", href: "/projects/calendar-view" },
-];
+// export const projects = [
+//   { name: "AL-RESERVE-APP", tag: "Workspace reservations", href: "/projects/al-reserve-app" },
+//   { name: "AMS", tag: "Activity management system", href: "/projects/ams" },
+//   { name: "Auth refactor", tag: "JWT + Clean Architecture", href: "/projects/auth-refactor" },
+//   { name: "Calendar view", tag: "Day / week navigation", href: "/projects/calendar-view" },
+// ];
 
 const techStack = ["React", "TypeScript", "Next.js", "Node.js", "Express", "PostgreSQL"];
 
@@ -35,10 +36,10 @@ export default function HomePage() {
           <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase">
             Full-stack dev
           </p>
-          <p className="text-[#7A9E8A] text-sm leading-relaxed max-w-[10rem]">
+          <p className="text-[#7A9E8A] text-sm leading-relaxed max-w-10rem">
             Building clean, maintainable reservation and management systems.
           </p>
-          <div className="w-px h-16 bg-gradient-to-b from-[#3DAB7A]/40 to-transparent mt-2" />
+          <div className="w-px h-16 bg-linear-to-b from-[#3DAB7A]/40 to-transparent mt-2" />
         </div>
 
         {/* Center */}
@@ -76,8 +77,8 @@ export default function HomePage() {
       </section>
 
       {/* Stats strip */}
-      <section className="mx-8 md:mx-16 lg:mx-32 mb-24 relative backdrop-blur-xl bg-white/[0.02] border border-[#3DAB7A]/10 rounded-2xl px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 shadow-[0_0_40px_rgba(61,171,122,0.06)]">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2D8A62]/20 to-transparent rounded-t-2xl" />
+      <section className="mx-8 md:mx-16 lg:mx-32 mb-24 relative backdrop-blur-xl bg-white/0.02 border border-[#3DAB7A]/10 rounded-2xl px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 shadow-[0_0_40px_rgba(61,171,122,0.06)]">
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#2D8A62]/20 to-transparent rounded-t-2xl" />
         {[
           { value: "2+", label: "Years experience" },
           { value: "5+", label: "Projects developed" },
