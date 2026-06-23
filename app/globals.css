@@ -21,12 +21,14 @@ body::after {
   content: '';
   position: fixed;
   top: 3.5rem;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.8;
   mix-blend-mode: multiply;
   background-image: url("/paper-texture.png");
   background-repeat: repeat;
   background-size: cover;
-}
+} 
