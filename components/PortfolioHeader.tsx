@@ -13,7 +13,7 @@ export default function PortfolioHeader() {
     <button
       onClick={triggerAnimation}
       aria-label="Toggle the light"
-      className={`bg-transparent border-none p-0 w-full ${isAnimating ? "cursor-default" : "cursor-pointer"}`}
+      className={`bg-transparent border-none p-0 w-full h09. ${isAnimating ? "cursor-default" : "cursor-pointer"}`}
     >
       <img
         src={frameSrc} 

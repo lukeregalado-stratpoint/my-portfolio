@@ -60,7 +60,7 @@ export default function ProjectsContent() {
               key={tech}
               className={`font-mono text-xs tracking-wide backdrop-blur-md border rounded-full px-4 py-1.5 transition-colors duration-500 ${
                 isBlackedOut
-                  ? "text-[#7A9E8A] bg-white/[0.03] border-[#3DAB7A]/15 hover:text-[#E8F0EC] hover:border-[#3DAB7A]/35"
+                  ? "text-[#7A9E8A] bg-white/0.03 border-[#3DAB7A]/15 hover:text-[#E8F0EC] hover:border-[#3DAB7A]/35"
                   : "text-[#5C564C] bg-white/60 border-[#3DAB7A]/20 hover:text-[#2A2622] hover:border-[#3DAB7A]/40"
               }`}
             >

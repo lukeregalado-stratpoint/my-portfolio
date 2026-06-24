@@ -25,15 +25,12 @@ const timeline = [
 
 ];
 
-function getExpOverlay(i: number, total: number): string {
-  if (i === 0) return "/latest-exp.png";
-  if (i === total - 1) return "/old-exp.png";
-  return "/between-exp.png";
+function getExpOverlay(i: number, total: number, isBlackedOut: boolean): string {
+  const suffix = isBlackedOut ? "-dark" : "";
+  if (i === 0) return `/latest-exp${suffix}.png`;
+  if (i === total - 1) return `/old-exp${suffix}.png`;
+  return `/between-exp${suffix}.png`;
 }
-
-// Overlay canvas is 2559 x 1248px.
-// All top/left values are percentages of that canvas so layout
-// is identical on every screen size.
 
 export default function AboutContent() {
   const { isBlackedOut } = useLightbulb();
@@ -48,18 +45,12 @@ export default function AboutContent() {
         isBlackedOut ? "bg-[#0e0e0e]" : "bg-[#F5F0E8]"
       }`}
     >
-      {/*
-        Aspect-ratio container locked to 2559:1248.
-        Everything inside is positioned as % of this box,
-        so it scales identically on every monitor.
-      */}
       <div
         className="relative w-full"
         style={{ aspectRatio: "2559 / 1248" }}
       >
-        {/* Overlay image — fills the container exactly */}
         <img
-          src="/about-overlay.png"
+          src={isBlackedOut ? "/about-overlay-dark.png" : "/about-overlay.png"}
           alt=""
           aria-hidden
           className="absolute inset-0 w-full h-full pointer-events-none z-10"
@@ -124,14 +115,15 @@ export default function AboutContent() {
 
         {/* Experience */}
         <div className="absolute z-20" style={{ top: "40%", left: "47%", width: "34%" }}>
-          <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase mb-2">
-            Experience
-          </p>
           <div className="flex flex-col gap-0">
             {timeline.map(({ year, role, company, desc }, i) => (
-              <div key={i} className="relative px-10 py-8">
+              <div
+                key={i}
+                className="relative px-10 py-18"
+                style={{ aspectRatio: "<image-width> / <image-height>" }}
+              >
                 <Image
-                  src={getExpOverlay(i, timeline.length)}
+                  src={getExpOverlay(i, timeline.length, isBlackedOut)}
                   alt=""
                   aria-hidden
                   fill

@@ -10,7 +10,7 @@ export default function SocialLinks() {
   }`;
 
   return (
-    <div className="absolute bottom-70 left-38 z-102">
+    <div className="z-102">
       <div className="flex gap-4">
         <a href="https://linkedin.com/in/luke-regalado" target="_blank" rel="noopener noreferrer" className={linkClass}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -51,33 +51,39 @@ function HeaderInner() {
   );
 }
 
-function FooterInner() {
-  const { isBlackedOut } = useLightbulb();
-  const dark = isBlackedOut;
+// function FooterInner() {
+//   const { isBlackedOut } = useLightbulb();
+//   const dark = isBlackedOut;
 
-  return (
-    <footer className="px-6 md:px-16 lg:px-32 py-8 flex flex-col md:flex-row items-center justify-between gap-4 z-9999">
-      <p className={`font-mono text-xs transition-colors duration-500 ${dark ? "text-[#EDE8DC]/60" : "text-[#8A8378]"}`}>
-        © {new Date().getFullYear()} Luke Regalado
-      </p>
-      <div className="flex gap-6">
-        {footerLinks.map(({ label, href }) => (
-          <Link
-            key={label}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`font-mono text-xs transition-colors duration-500 hover:text-[#439a86] ${
-              dark ? "text-[#EDE8DC]/60" : "text-[#8A8378]"
-            }`}
-          >
-            {label}
-          </Link>
-        ))}
-      </div>
-    </footer>
-  );
-}
+//   return (
+//     <footer
+//       className={`px-6 md:px-16 lg:px-32 py-8 flex flex-col md:flex-row items-center justify-between gap-4 border-t transition-colors duration-500 ${
+//         dark
+//           ? "bg-[#1a1a1a] border-[#ffffff]/10"
+//           : "bg-[#E8E0D0] border-[#2A2622]/10"
+//       }`}
+//     >
+//       <p className={`font-mono text-xs transition-colors duration-500 ${dark ? "text-[#EDE8DC]/60" : "text-[#8A8378]"}`}>
+//         © {new Date().getFullYear()} Luke Regalado
+//       </p>
+//       <div className="flex gap-6">
+//         {footerLinks.map(({ label, href }) => (
+//           <Link
+//             key={label}
+//             href={href}
+//             target="_blank"
+//             rel="noopener noreferrer"
+//             className={`font-mono text-xs transition-colors duration-500 hover:text-[#439a86] ${
+//               dark ? "text-[#EDE8DC]/60" : "text-[#8A8378]"
+//             }`}
+//           >
+//             {label}
+//           </Link>
+//         ))}
+//       </div>
+//     </footer>
+//   );
+// }
 
 export default function RootLayout({
   children,
@@ -92,7 +98,7 @@ export default function RootLayout({
 
           {children}
 
-          <FooterInner />
+          {/* <FooterInner /> */}
         </LightbulbProvider>
       </body>
     </html>
