@@ -11,17 +11,24 @@ const timeline = [
     desc: "Building enterprise-level scalable web applications.",
   },
   {
+    year: "2025",
+    role: "Junior Artist",
+    company: "Asha Artlines Art Team",
+    desc: "Currently accomplishing assigned commissions via collaboration with an art team.",
+  },
+  {
     year: "2022",
     role: "BS Computer Science",
     company: "De La Salle University - Manila",
     desc: "Currently studying with a major in Software Technology.",
   },
+
 ];
 
 function getExpOverlay(i: number, total: number): string {
   if (i === 0) return "/latest-exp.png";
   if (i === total - 1) return "/old-exp.png";
-  return "/mid-exp.png";
+  return "/between-exp.png";
 }
 
 // Overlay canvas is 2559 x 1248px.
