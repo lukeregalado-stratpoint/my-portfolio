@@ -1,10 +1,20 @@
 "use client";
-import { createContext, useContext, useState, useRef, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, useRef, ReactNode } from "react";
 
 const TOTAL_FRAMES = 12;
 const FRAME_DURATION = 80;
 const BLACKOUT_UNTIL_FRAME = 3;
 const TURNOFF_FRAMES = 9;
+
+const getStoredFrame = () => {
+  if (typeof window === "undefined") return null;
+
+  const storedFrame = window.localStorage.getItem("lightbulbFrame");
+  if (storedFrame === null) return null;
+
+  const parsed = Number(storedFrame);
+  return Number.isNaN(parsed) || parsed < 0 || parsed >= TOTAL_FRAMES ? null : parsed;
+};
 
 type LightbulbContextType = {
   frame: number;
@@ -22,8 +32,27 @@ export function LightbulbProvider({ children }: { children: ReactNode }) {
   const [frame, setFrame] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [turningOff, setTurningOff] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const isAnimating = useRef(false);
-  const frameRef = useRef(0); // tracks real current frame, no closure issues
+  const frameRef = useRef(0);
+
+  useEffect(() => {
+    const storedFrame = getStoredFrame();
+    if (storedFrame !== null) {
+      setFrame(storedFrame);
+      frameRef.current = storedFrame;
+    }
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    frameRef.current = frame;
+  }, [frame]);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    window.localStorage.setItem("lightbulbFrame", String(frame));
+  }, [frame, hydrated]);
 
   const isLit = frame === TOTAL_FRAMES - 1;
   const isBlackedOut = frame < BLACKOUT_UNTIL_FRAME;

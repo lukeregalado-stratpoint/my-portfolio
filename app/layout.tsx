@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const footerLinks = [
-  { label: "GitHub", href: "https://github.com/lukeregalado" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/luke-regalado" },
-  { label: "Email", href: "mailto:luke.m.regalado@gmail.com" },
-];
+// const footerLinks = [
+//   { label: "GitHub", href: "https://github.com/lukeregalado" },
+//   { label: "LinkedIn", href: "https://linkedin.com/in/luke-regalado" },
+//   { label: "Email", href: "mailto:luke.m.regalado@gmail.com" },
+// ];
 
 function HeaderInner() {
   const { isBlackedOut } = useLightbulb();
@@ -29,7 +29,7 @@ function HeaderInner() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[70] border-b transition-colors duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-70 border-b transition-colors duration-500 ${
         dark
           ? "bg-[#1a1a1a] border-[#ffffff]/10"
           : "bg-[#E8E0D0] border-[#2A2622]/10"
