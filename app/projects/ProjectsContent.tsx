@@ -13,7 +13,7 @@ export default function ProjectsContent() {
     <main className={`min-h-screen flex flex-col overflow-visible transition-colors duration-500 ${
       isBlackedOut ? "bg-[#0e0e0e] text-[#E8F0EC]" : "bg-[#F5F0E8] text-[#2A2622]"
     }`}>
-      <section className="relative flex-1 px-8 md:px-16 lg:px-24 pt-32 pb-24 flex items-center overflow-visible">
+      <section className="relative flex-1 px-8 md:px-16 lg:px-24 pt-32 pb-5 flex items-center overflow-visible">
 
         {/* Left side */}
         <div className="hidden lg:flex flex-col items-start gap-4 w-48 shrink-0">

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Project } from "@/app/projects/data";
@@ -29,6 +30,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
     return stageW / 2 - CARD_W / 2 + slot * GAP;
   }
 
+  // floating animation
   function applyPositions(transition: boolean) {
     const cur = currentRef.current;
     cardRefs.current.forEach((c, i) => {
@@ -49,18 +51,17 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
       c.style.opacity = String(opacity);
       c.style.zIndex = String(10 - absSlot);
       c.style.filter = blur > 0 ? `blur(${blur}px)` : "none";
-      c.style.border = isFront
-        ? "1.5px solid rgba(61,171,122,0.45)"
-        : "1.5px solid rgba(61,171,122,0.15)";
+      c.style.border = "none";
       c.style.background = isFront
-        ? "rgba(255,255,255,0.07)"
-        : "rgba(255,255,255,0.03)";
+        ? "rgba(255,255,255,0.08)"
+        : "rgba(255,255,255,0.04)";
 
       const glow = c.querySelector<HTMLDivElement>(".carousel-glow");
       if (glow) glow.style.opacity = isFront ? "1" : "0";
     });
   }
 
+  // revolve carousel animation
   useEffect(() => {
     applyPositions(false);
 
@@ -103,7 +104,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
 
   return (
     <div className="flex flex-col items-center gap-8 overflow-visible w-full">
-      <div ref={stageRef} className="relative w-full h-380px overflow-visible">
+      <div ref={stageRef} className="relative w-full h-[380px] overflow-visible">
         {projects.map((project, i) => (
           <div
             key={project.slug}
@@ -116,34 +117,49 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
                 go(slot > 0 ? 1 : -1);
               }
             }}
-            className="absolute top-0 w-260px h-340px flex flex-col justify-end p-7 gap-1.5 overflow-hidden cursor-pointer"
-            style={{ borderRadius: "24px 24px 32px 32px" }}
+            className="absolute top-0 w-[260px] h-[359px] flex flex-col justify-end p-7 gap-1.5 overflow-hidden cursor-pointer"
+            style={{ borderRadius: "15px" }}
           >
-            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#3DAB7A]/50 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 opacity-90">
+              <Image
+                src="/project-card.png"
+                alt="Decorative project card"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent" />
             <div
               className="carousel-glow absolute inset-0 pointer-events-none transition-opacity duration-500"
               style={{
-                background: "radial-gradient(ellipse at 50% 110%, rgba(61,171,122,0.16), transparent 65%)",
+                background: "radial-gradient(ellipse at 50% 110%, rgba(255,255,255,0.16), transparent 65%)",
                 opacity: 0,
               }}
             />
-            <span className="absolute top-5 right-6 font-mono text-xs text-[#3DAB7A]/30">
+            <span className="absolute top-5 right-6 font-newsreader text-xs text-[#3DAB7A]/30">
               0{i + 1}
             </span>
-            <span className="font-mono text-[9px] tracking-widest uppercase text-[#3DAB7A]/50 mb-0.5">
-              Project
+            <span className="absolute top-10 left-6 font-newsreader text-xs tracking-widest uppercase text-[#283618]/30">
+              ✦✦✦
             </span>
-            <p className="font-mono text-base font-bold text-[#E8F0EC] tracking-tight">
-              {project.title} 
-            </p>
-            <p className="font-mono text-xs text-[#7A9E8A] leading-relaxed">
-              {project.tag}
-            </p>
-            {getSlot(i, current) === 0 && project.longDescription && (
-              <span className="font-mono text-[9px] tracking-widest uppercase text-[#3DAB7A]/40 mt-2">
-                view project →
-              </span>
-            )}
+            <div className="relative flex h-full flex-col justify-start gap-3">
+              <div className="space-y-2">
+                <p className="font-greatvibes text-6xl mt-[23%] mb-0 font-bold text-[#283618] tracking-tight text-center">
+                  {project.title}
+                </p>
+                <p className="font-newsreader text-sm font-bold text-[#283618] leading-relaxed text-center">
+                  {project.tag}
+                </p>
+              </div>
+              <p className="font-newsreader text-xs text-[#283618] leading-relaxed mt-0">
+                {project.description}
+              </p>
+              {getSlot(i, current) === 0 && project.longDescription && (
+                <span className="font-newsreader italic text-[9px] text-right tracking-wide uppercase text-[#283618]/40 mt-2">
+                  view project →
+                </span>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -153,7 +169,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
           type="button"
           aria-label="Previous project"
           onClick={() => go(-1)}
-          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/0.03 border border-[#3DAB7A]/20 text-[#7A9E8A] hover:text-[#E8F0EC] hover:border-[#3DAB7A]/40 transition-colors flex items-center justify-center text-lg"
+          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/0.03 border border-white/10 text-[#7A9E8A] hover:text-[#E8F0EC] hover:border-white/20 transition-colors flex items-center justify-center text-lg"
         >
           ‹
         </button>
@@ -175,7 +191,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
           type="button"
           aria-label="Next project"
           onClick={() => go(1)}
-          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/0.03 border border-[#3DAB7A]/20 text-[#7A9E8A] hover:text-[#E8F0EC] hover:border-[#3DAB7A]/40 transition-colors flex items-center justify-center text-lg"
+          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/0.03 border border-white/10 text-[#7A9E8A] hover:text-[#E8F0EC] hover:border-white/20 transition-colors flex items-center justify-center text-lg"
         >
           ›
         </button>

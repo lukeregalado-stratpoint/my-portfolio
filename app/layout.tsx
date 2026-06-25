@@ -92,7 +92,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-[#2A2622] h-lvh flex flex-col`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased text-[#2A2622] h-min-screen flex flex-col`}>
         <LightbulbProvider>
           <HeaderInner />
 
