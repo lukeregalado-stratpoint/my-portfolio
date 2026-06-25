@@ -17,24 +17,24 @@ export default function ProjectsContent() {
 
         {/* Left side */}
         <div className="hidden lg:flex flex-col items-start gap-4 w-48 shrink-0">
-          <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase">
-            Full-stack dev
+          <p className="font-mono text-[#283618] text-xs tracking-widest uppercase">
+            idk wat to put here!
           </p>
           <p className={`text-sm leading-relaxed max-w-10rem transition-colors duration-500 ${
             isBlackedOut ? "text-[#7A9E8A]" : "text-[#5C564C]"
           }`}>
-            Building clean, maintainable reservation and management systems.
+            blablabla
           </p>
-          <div className="w-px h-16 bg-linear-to-b from-[#3DAB7A]/40 to-transparent mt-2" />
+          {/* <div className="w-px h-16 bg-linear-to-b from-[#3DAB7A]/40 to-transparent mt-2" /> */}
         </div>
 
         {/* Center */}
         <div className="flex-1 flex flex-col items-center justify-center gap-10 overflow-visible">
           <div className="text-center max-w-md">
-            <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase mb-3">
-              Selected work
+            <p className="font-newsreader text-[#283618] text-xs tracking-widest  mb-3">
+              View my projects!
             </p>
-            <h1 className={`font-mono text-3xl md:text-4xl font-bold tracking-tight transition-colors duration-500 ${
+            <h1 className={`font-homemadeapple text-5xl font-bold tracking-tight transition-colors duration-500 ${
               isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
             }`}>
               Projects
@@ -52,10 +52,10 @@ export default function ProjectsContent() {
 
         {/* Right side */}
         <div className="hidden lg:flex flex-col items-end gap-3 w-48 shrink-0">
-          <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase mb-2">
-            Stack
+          <p className="font-mono text-[#283618] text-xs tracking-widest uppercase mb-2">
+            PLACEHOLDER HERE!!!! AHHHH!
           </p>
-          {techStack.map((tech) => (
+          {/* {techStack.map((tech) => (
             <span
               key={tech}
               className={`font-mono text-xs tracking-wide backdrop-blur-md border rounded-full px-4 py-1.5 transition-colors duration-500 ${
@@ -66,7 +66,7 @@ export default function ProjectsContent() {
             >
               {tech}
             </span>
-          ))}
+          ))} */}
         </div>
       </section>
 

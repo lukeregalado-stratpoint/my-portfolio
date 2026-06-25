@@ -10,6 +10,7 @@ const GAP = 300;
 export function ProjectCarousel({ projects }: { projects: Project[] }) {
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const animatingRef = useRef(false);
   const stageRef = useRef<HTMLDivElement>(null);
   const floatTRef = useRef(0);
   const rafRef = useRef<number>(0);
@@ -30,8 +31,8 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
     return stageW / 2 - CARD_W / 2 + slot * GAP;
   }
 
-  // floating animation
-  function applyPositions(transition: boolean) {
+  // revolving anim
+  function applyPositions(transition: boolean, dir: 1 | -1 = 1) {
     const cur = currentRef.current;
     cardRefs.current.forEach((c, i) => {
       if (!c) return;
@@ -39,19 +40,28 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
       const absSlot = Math.abs(slot);
       const x = slotX(slot);
       const scale = absSlot === 0 ? 1 : absSlot === 1 ? 0.8 : 0.65;
+      // front = full; 1 neighbor away = 0.8; farther = 0.65
       const y = absSlot === 0 ? 0 : absSlot === 1 ? 24 : 42;
-      const opacity = absSlot === 0 ? 1 : absSlot === 1 ? 0.42 : absSlot === 2 ? 0.15 : 0;
+      // vertical drop (px) for side cards
+      const opacity = absSlot === 0 ? 1 : absSlot === 1 ? 0.42 : absSlot === 2 ? 0.15 : 0; 
+      // how transparent side cards are
       const blur = absSlot === 0 ? 0 : absSlot === 1 ? 1.5 : 3;
+      // blur to side cards
       const isFront = absSlot === 0;
 
       c.style.transition = transition
-        ? "transform 0.55s cubic-bezier(0.34,1.2,0.64,1), opacity 0.45s ease"
+        ? "transform 2s cubic-bezier(0.34,1.2,0.64,1), opacity 0.45s ease"
         : "none";
-      c.style.transform = `translateX(${x}px) translateY(${y}px) scale(${scale})`;
+      
+      //SWINGING EFFECT
+      const swingRot = transition
+        ? dir * -5
+        : slot * -3;       // side cards hang at their lean angle
+      c.style.transform = `translateX(${x}px) translateY(${y}px) scale(${scale}) rotate(${swingRot}deg)`;
       c.style.opacity = String(opacity);
       c.style.zIndex = String(10 - absSlot);
       c.style.filter = blur > 0 ? `blur(${blur}px)` : "none";
-      c.style.border = "none";
+      c.style.border = "none"; 
       c.style.background = isFront
         ? "rgba(255,255,255,0.08)"
         : "rgba(255,255,255,0.04)";
@@ -61,11 +71,16 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
     });
   }
 
-  // revolve carousel animation
+  // floating anim
   useEffect(() => {
     applyPositions(false);
 
     function tick() {
+      if (animatingRef.current) {
+        rafRef.current = requestAnimationFrame(tick);
+        return;
+      }
+
       floatTRef.current += 0.012;
       const t = floatTRef.current;
       const cur = currentRef.current;
@@ -80,6 +95,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
         const ph = floatPhases.current[i];
         const floatY = Math.sin(t + ph) * 5 + Math.sin(t * 0.6 + ph) * 2;
         const floatRot = absSlot === 0 ? Math.sin(t * 0.5 + ph) * 0.7 : 0;
+
         c.style.transform = `translateX(${x}px) translateY(${baseY + floatY}px) scale(${scale}) rotate(${floatRot}deg)`;
       });
 
@@ -92,16 +108,28 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
     };
   }, []);
 
+  
+
   function go(dir: 1 | -1) {
-    if (animating) return;
+    if (animatingRef.current) return;
     setAnimating(true);
+    animatingRef.current = true;
+
+    // save each card's current slot before update currentRef
+    cardRefs.current.forEach((c, i) => {
+      if (!c) return;
+      c.dataset.prevSlot = String(getSlot(i, currentRef.current));
+    });
+
     const next = (currentRef.current + dir + n) % n;
     currentRef.current = next;
     setCurrent(next);
-    applyPositions(true);
-    setTimeout(() => setAnimating(false), 600);
+    applyPositions(true, dir);
+    setTimeout(() => {
+      setAnimating(false);
+      animatingRef.current = false;
+    }, 600);
   }
-
   return (
     <div className="flex flex-col items-center gap-8 overflow-visible w-full">
       <div ref={stageRef} className="relative w-full h-[380px] overflow-visible">
@@ -125,6 +153,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
                 src="/project-card.png"
                 alt="Decorative project card"
                 fill
+                sizes="40vw"
                 className="object-cover"
               />
             </div>
@@ -136,7 +165,8 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
                 opacity: 0,
               }}
             />
-            <span className="absolute top-5 right-6 font-newsreader text-xs text-[#3DAB7A]/30">
+            <span className="absolute top-5 right-6 font-newsreader text-xs text-[#3DAB7A]/30"
+            style={{ borderRadius: "15px", transformOrigin: "top center" }} >
               0{i + 1}
             </span>
             <span className="absolute top-10 left-6 font-newsreader text-xs tracking-widest uppercase text-[#283618]/30">
@@ -144,7 +174,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
             </span>
             <div className="relative flex h-full flex-col justify-start gap-3">
               <div className="space-y-2">
-                <p className="font-greatvibes text-6xl mt-[23%] mb-0 font-bold text-[#283618] tracking-tight text-center">
+                <p className="font-homemadeapple text-4xl leading-15 mt-[23%] mb-0 font-bold text-[#283618] tracking-tight text-center">
                   {project.title}
                 </p>
                 <p className="font-newsreader text-sm font-bold text-[#283618] leading-relaxed text-center">

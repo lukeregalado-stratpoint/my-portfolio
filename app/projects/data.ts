@@ -50,4 +50,23 @@ export const projects: Project[] = [
     tags: [],
     year: "2026",
   },
+  {
+    slug: "coming-soon-4",
+    title: "Coming Soon",
+    tag: "More projects on the way",
+    description: "",
+    longDescription: "",
+    tags: [],
+    year: "2026",
+  },
+  {
+    slug: "coming-soon-5",
+    title: "Coming Soon",
+    tag: "More projects on the way",
+    description: "",
+    longDescription: "",
+    tags: [],
+    year: "2026",
+  },
+  
 ];
