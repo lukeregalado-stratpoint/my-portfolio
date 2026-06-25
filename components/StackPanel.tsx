@@ -26,6 +26,8 @@ export function StackPanel({ allTags, activeFilters, onToggle }: StackPanelProps
           width={TITLE_W}
           height={TITLE_H}
           className="w-full h-full object-contain object-right"
+          loading="eager"
+          priority
         />
       </div>
 
@@ -59,6 +61,8 @@ export function StackPanel({ allTags, activeFilters, onToggle }: StackPanelProps
               width={TAG_W}
               height={TAG_H}
               className="absolute inset-0 w-full h-full object-fill"
+              loading="eager"
+            priority
             />
             <span
               className="relative z-10 pl-12 font-mono font-extrabold text-3xl text-[#283618] text-left pointer-events-none"
