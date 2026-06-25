@@ -10,7 +10,7 @@ export async function sendMessage(_prev: State, formData: FormData): Promise<Sta
   const message = formData.get("message") as string;
 
   console.log("USER:", process.env.GMAIL_USER);
-console.log("PASS:", process.env.GMAIL_PASS ? "loaded" : "undefined");
+  console.log("PASS:", process.env.GMAIL_PASS ? "loaded" : "undefined");
 
   if (!name || !email || !message) {
     return { success: false, error: "All fields are required." };
