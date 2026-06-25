@@ -70,3 +70,17 @@ export const projects: Project[] = [
   },
   
 ];
+
+export const null_projects: Project[] = [
+  {
+    slug: "coming-soon-999",
+    title: "Woopsie! Uh-oh! :-(",
+    tag: "There's nothing here!",
+    description: "There are currently no projects made my me that match the filters you set!",
+    longDescription:"",
+    tags: [],
+    github: "",
+    live: "n/a",
+    year: "n/a",
+  },
+];

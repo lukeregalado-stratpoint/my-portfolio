@@ -43,7 +43,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
       // front = full; 1 neighbor away = 0.8; farther = 0.65
       const y = absSlot === 0 ? 0 : absSlot === 1 ? 24 : 42;
       // vertical drop (px) for side cards
-      const opacity = absSlot === 0 ? 1 : absSlot === 1 ? 0.42 : absSlot === 2 ? 0.15 : 0; 
+      const opacity = absSlot === 0 ? 1 : absSlot === 1 ? 0.42 : absSlot === 2 ? 0.05 : 0; 
       // how transparent side cards are
       const blur = absSlot === 0 ? 0 : absSlot === 1 ? 1.5 : 3;
       // blur to side cards
@@ -107,6 +107,20 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
+  
+  useEffect(() => {
+    // remove necessary refs if projectlist shrinks
+    cardRefs.current = cardRefs.current.slice(0, projects.length);
+    floatPhases.current = projects.map((_, i) => i * 1.3);
+
+    // reset first card
+    currentRef.current = 0;
+    setCurrent(0);
+
+    // defer
+    const id = setTimeout(() => applyPositions(false), 0);
+    return () => clearTimeout(id);
+  }, [projects]);
 
   
 
@@ -155,6 +169,8 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
                 fill
                 sizes="40vw"
                 className="object-cover"
+                loading="eager"
+                priority
               />
             </div>
             <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-transparent to-transparent" />

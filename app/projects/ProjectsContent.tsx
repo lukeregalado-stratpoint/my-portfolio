@@ -1,95 +1,143 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { useLightbulb } from "@/components/LightbulbContext";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
-import { projects } from "@/app/projects/data";
+import { null_projects, projects } from "@/app/projects/data";
+import { StackPanel } from "@/components/StackPanel";
+import Image from "next/image";
 
-const techStack = ["React", "TypeScript", "Next.js", "Node.js", "Express", "PostgreSQL"];
+const allTags = Array.from(
+  new Set(projects.flatMap((p) => p.tags))
+).filter(Boolean);
 
 export default function ProjectsContent() {
   const { isBlackedOut } = useLightbulb();
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+
+  function toggleFilter(tag: string) {
+    setActiveFilters((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  }
+
+  const filteredProjects = useMemo(() => {
+    if (activeFilters.length === allTags.length) return null_projects;
+    return projects.filter((p) => {
+      // show only projects matching activated filters
+      return activeFilters.every((f) => p.tags.includes(f));
+    });
+  }, [activeFilters]);
+  
+  const realProjects = projects.filter((p) => p.tags.length > 0);
+  const primaryStack = allTags[0] ?? "React";
+  const earliestYear = realProjects.reduce(
+    (min, p) => (p.year < min ? p.year : min),
+    realProjects[0]?.year ?? "2026"
+  );
+  const currentYear = new Date().getFullYear();
+  const yearsExp = currentYear - Number(earliestYear);
 
   return (
-    <main className={`min-h-screen flex flex-col overflow-visible transition-colors duration-500 ${
-      isBlackedOut ? "bg-[#0e0e0e] text-[#E8F0EC]" : "bg-[#F5F0E8] text-[#2A2622]"
-    }`}>
+    <main
+      className={`min-h-screen flex flex-col transition-colors duration-500 ${
+        isBlackedOut
+          ? "bg-[#0e0e0e] text-[#E8F0EC]"
+          : "bg-[#F5F0E8] text-[#2A2622]"
+      }`}
+    >
+      {/*
+       * overflow-visible on the <section> so the stack tags can slide
+       * past the right edge of the layout without being clipped.
+       * The section itself has no overflow: hidden ancestor above it
+       * (main has no overflow set), so this is sufficient.
+       */}
       <section className="relative flex-1 px-8 md:px-16 lg:px-24 pt-32 pb-5 flex items-center overflow-visible">
 
-        {/* Left side */}
+        {/* Left column */}
         <div className="hidden lg:flex flex-col items-start gap-4 w-48 shrink-0">
           <p className="font-mono text-[#283618] text-xs tracking-widest uppercase">
             idk wat to put here!
           </p>
-          <p className={`text-sm leading-relaxed max-w-10rem transition-colors duration-500 ${
-            isBlackedOut ? "text-[#7A9E8A]" : "text-[#5C564C]"
-          }`}>
+          <p
+            className={`text-sm leading-relaxed max-w-10rem transition-colors duration-500 ${
+              isBlackedOut ? "text-[#7A9E8A]" : "text-[#5C564C]"
+            }`}
+          >
             blablabla
           </p>
-          {/* <div className="w-px h-16 bg-linear-to-b from-[#3DAB7A]/40 to-transparent mt-2" /> */}
         </div>
 
-        {/* Center */}
+        {/* Center column */}
         <div className="flex-1 flex flex-col items-center justify-center gap-10 overflow-visible">
           <div className="text-center max-w-md">
-            <p className="font-mono text-[#283618] text-xs tracking-widest  mb-3">
+            <p className="font-mono text-[#283618] text-xs tracking-widest mb-3">
               View my projects!
             </p>
-            <h1 className={`font-homemadeapple text-5xl font-bold tracking-tight transition-colors duration-500 ${
-              isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
-            }`}>
+            <h1
+              className={`font-homemadeapple text-5xl font-bold tracking-tight transition-colors duration-500 ${
+                isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
+              }`}
+            >
               Projects
             </h1>
           </div>
 
-          <ProjectCarousel projects={projects} />
+          <ProjectCarousel
+            key={activeFilters.join(",")}
+            projects={filteredProjects}
+          />
 
-          <p className={`font-mono text-xs tracking-widest uppercase transition-colors duration-500 ${
-            isBlackedOut ? "text-[#4A6A5A]" : "text-[#8A8378]"
-          }`}>
+          <p
+            className={`font-mono text-xs tracking-widest uppercase transition-colors duration-500 ${
+              isBlackedOut ? "text-[#4A6A5A]" : "text-[#8A8378]"
+            }`}
+          >
             click to cycle
           </p>
         </div>
 
-        {/* Right side */}
-        <div className="hidden lg:flex flex-col items-end gap-3 w-48 shrink-0">
-          <p className="font-mono text-[#283618] text-xs tracking-widest uppercase mb-2">
-            PLACEHOLDER HERE!!!! AHHHH!
-          </p>
-          {/* {techStack.map((tech) => (
-            <span
-              key={tech}
-              className={`font-mono text-xs tracking-wide backdrop-blur-md border rounded-full px-4 py-1.5 transition-colors duration-500 ${
-                isBlackedOut
-                  ? "text-[#7A9E8A] bg-white/0.03 border-[#3DAB7A]/15 hover:text-[#E8F0EC] hover:border-[#3DAB7A]/35"
-                  : "text-[#5C564C] bg-white/60 border-[#3DAB7A]/20 hover:text-[#2A2622] hover:border-[#3DAB7A]/40"
-              }`}
-            >
-              {tech}
-            </span>
-          ))} */}
+        {/* Right column Stack panel */}
+        <div className="hidden lg:block w-48 h-14/16 shrink-0 relative overflow-visible">
+          <StackPanel
+            allTags={allTags}
+            activeFilters={activeFilters}
+            onToggle={toggleFilter}
+          />
         </div>
+
       </section>
 
       {/* Stats strip */}
-      <section className={`mx-8 md:mx-16 lg:mx-32 mb-24 relative backdrop-blur-xl border rounded-2xl px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 transition-colors duration-500 ${
-        isBlackedOut
-          ? "bg-white/0.02 border-[#3DAB7A]/10 shadow-[0_0_40px_rgba(61,171,122,0.06)]"
-          : "bg-white/60 border-[#3DAB7A]/15 shadow-[0_0_40px_rgba(61,171,122,0.08)]"
-      }`}>
+      <section
+        className={`mx-8 md:mx-16 lg:mx-32 mb-24 relative backdrop-blur-xl border rounded-2xl px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 transition-colors duration-500 ${
+          isBlackedOut
+            ? "bg-white/0.02 border-[#3DAB7A]/10 shadow-[0_0_40px_rgba(61,171,122,0.06)]"
+            : "bg-white/60 border-[#3DAB7A]/15 shadow-[0_0_40px_rgba(61,171,122,0.08)]"
+        }`}
+      >
         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#2D8A62]/20 to-transparent rounded-t-2xl" />
         {[
-          { value: "2+", label: "Years experience" },
-          { value: "5+", label: "Projects developed" },
-          { value: "React", label: "Primary stack" },
+          { value: `${yearsExp}+`, label: "Years experience" },
+          { value: `${realProjects.length}+`, label: "Projects developed" },
+          { value: primaryStack, label: "Primary stack" },
           { value: "PH", label: "Based in Manila" },
         ].map(({ value, label }) => (
           <div key={label}>
-            <p className={`font-mono text-3xl font-bold transition-colors duration-500 ${
-              isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
-            }`}>{value}</p>
-            <p className={`text-sm mt-1 transition-colors duration-500 ${
-              isBlackedOut ? "text-[#4A6A5A]" : "text-[#8A8378]"
-            }`}>{label}</p>
+            <p
+              className={`font-mono text-3xl font-bold transition-colors duration-500 ${
+                isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
+              }`}
+            >
+              {value}
+            </p>
+            <p
+              className={`text-sm mt-1 transition-colors duration-500 ${
+                isBlackedOut ? "text-[#4A6A5A]" : "text-[#8A8378]"
+              }`}
+            >
+              {label}
+            </p>
           </div>
         ))}
       </section>
