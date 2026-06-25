@@ -27,8 +27,6 @@ body {
 
 .font-newsreader {
   font-family: "Newsreader", serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
 }
 
 @media (prefers-reduced-motion: reduce) {

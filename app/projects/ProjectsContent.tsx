@@ -31,7 +31,7 @@ export default function ProjectsContent() {
         {/* Center */}
         <div className="flex-1 flex flex-col items-center justify-center gap-10 overflow-visible">
           <div className="text-center max-w-md">
-            <p className="font-newsreader text-[#283618] text-xs tracking-widest  mb-3">
+            <p className="font-mono text-[#283618] text-xs tracking-widest  mb-3">
               View my projects!
             </p>
             <h1 className={`font-homemadeapple text-5xl font-bold tracking-tight transition-colors duration-500 ${

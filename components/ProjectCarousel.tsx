@@ -165,11 +165,11 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
                 opacity: 0,
               }}
             />
-            <span className="absolute top-5 right-6 font-newsreader text-xs text-[#3DAB7A]/30"
+            <span className="absolute top-5 right-6 font-mono text-xs text-[#3DAB7A]/30"
             style={{ borderRadius: "15px", transformOrigin: "top center" }} >
               0{i + 1}
             </span>
-            <span className="absolute top-10 left-6 font-newsreader text-xs tracking-widest uppercase text-[#283618]/30">
+            <span className="absolute top-10 left-6 font-mono text-xs tracking-widest uppercase text-[#283618]/30">
               ✦✦✦
             </span>
             <div className="relative flex h-full flex-col justify-start gap-3">
@@ -177,15 +177,15 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
                 <p className="font-homemadeapple text-4xl leading-15 mt-[23%] mb-0 font-bold text-[#283618] tracking-tight text-center">
                   {project.title}
                 </p>
-                <p className="font-newsreader text-sm font-bold text-[#283618] leading-relaxed text-center">
+                <p className="font-mono text-sm font-bold text-[#283618] leading-relaxed text-center">
                   {project.tag}
                 </p>
               </div>
-              <p className="font-newsreader text-xs text-[#283618] leading-relaxed mt-0">
+              <p className="font-mono text-xs text-[#283618] leading-relaxed mt-0">
                 {project.description}
               </p>
               {getSlot(i, current) === 0 && project.longDescription && (
-                <span className="font-newsreader italic text-[9px] text-right tracking-wide uppercase text-[#283618]/40 mt-2">
+                <span className="font-mono italic text-[9px] text-right tracking-wide uppercase text-[#283618]/40 mt-2">
                   view project →
                 </span>
               )}

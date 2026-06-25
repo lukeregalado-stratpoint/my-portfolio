@@ -1,17 +1,10 @@
 "use client";
 
-import { Kalam } from "next/font/google";
 import Vignette from "@/components/Vignette";
 import PortfolioHeader from "@/components/PortfolioHeader";
 import SocialLinks from "@/components/SocialLinks";
 import BlackoutBackground from "@/components/BlackoutBackground";
 import { useLightbulb } from "@/components/LightbulbContext";
-
-const kalam = Kalam({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-kalam",
-});
 
 export default function HomePage() {
   const { isBlackedOut } = useLightbulb();
