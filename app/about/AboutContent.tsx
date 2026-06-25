@@ -47,7 +47,7 @@ export default function AboutContent() {
     >
       <div
         className="relative w-full"
-        style={{ aspectRatio: "2559 / 1248" }}
+        style={{ height: 'calc(100vh - 56px)' }}
       >
         <img
           src={isBlackedOut ? "/about-overlay-dark.png" : "/about-overlay.png"}
@@ -58,13 +58,10 @@ export default function AboutContent() {
 
         {/* About Me */}
         <div className="absolute z-20" style={{ top: "15%", left: "15%" }}>
-          <p className="font-mono text-[#3DAB7A] text-sm tracking-widest uppercase mb-3">
-            About me
-          </p>
           <h1 className={`font-mono text-4xl font-bold tracking-tight mb-6 leading-snug ${text}`}>
             Live in the question.<br />Experience the answers.
           </h1>
-          <div className={`space-y-3 text-xl leading-relaxed max-w-xs ${muted}`}>
+          <div className={`space-y-3 text-xl leading-relaxed max-w-sm ${muted}`}>
             <p>
               I'm a software engineer based in Manila, Philippines, currently
               working at Stratpoint Technologies as an intern. I specialize in
@@ -78,10 +75,7 @@ export default function AboutContent() {
         </div>
 
         {/* Frontend */}
-        <div className="absolute z-20" style={{ top: "15.5%", left: "48%" }}>
-          <p className="font-bold text-lg text-[#3DAB7A] tracking-widest uppercase mb-3">
-            Frontend
-          </p>
+        <div className="absolute z-20" style={{ top: "16%", left: "48%" }}>
           <ul className="space-y-1">
             {["React", "Next.js", "TypeScript", "Tailwind CSS"].map((item) => (
               <li key={item} className={`font-semibold text-base ${mono}`}>{item}</li>
@@ -90,10 +84,7 @@ export default function AboutContent() {
         </div>
 
         {/* Backend */}
-        <div className="absolute z-20" style={{ top: "18%", left: "60%", transform: "rotate(5.8deg)" }}>
-          <p className="font-bold text-lg text-[#3DAB7A] tracking-widest uppercase mb-3">
-            Backend
-          </p>
+        <div className="absolute z-20" style={{ top: "19%", left: "60%", transform: "rotate(5.8deg)" }}>
           <ul className="space-y-1">
             {["Node.js", "REST APIs", "PostgreSQL", "Prisma"].map((item) => (
               <li key={item} className={`font-semibold text-base ${mono}`}>{item}</li>
@@ -102,10 +93,7 @@ export default function AboutContent() {
         </div>
 
         {/* Tooling */}
-        <div className="absolute z-20" style={{ top: "15.5%", left: "72%", transform: "rotate(-3deg)" }}>
-          <p className="font-bold text-lg text-[#3DAB7A] tracking-widest uppercase mb-3">
-            Tooling
-          </p>
+        <div className="absolute z-20" style={{ top: "16%", left: "72%", transform: "rotate(-3deg)" }}>
           <ul className="space-y-1">
             {["Git", "Docker", "Vercel", "GitHub Actions"].map((item) => (
               <li key={item} className={`font-semibold text-base ${mono}`}>{item}</li>
@@ -119,15 +107,14 @@ export default function AboutContent() {
             {timeline.map(({ year, role, company, desc }, i) => (
               <div
                 key={i}
-                className="relative px-10 py-18"
-                style={{ aspectRatio: "<image-width> / <image-height>" }}
+                className="relative px-10 h-auto pt-13 sm:h-48 md:h-35"
               >
                 <Image
                   src={getExpOverlay(i, timeline.length, isBlackedOut)}
                   alt=""
                   aria-hidden
                   fill
-                  sizes="34vw"
+                  sizes="40vw"
                   className="object-fill pointer-events-none"
                 />
                 <div className="relative z-10 flex gap-6">
