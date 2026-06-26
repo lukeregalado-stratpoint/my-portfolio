@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { sendMessage } from "./actions";
 import { useLightbulb } from "@/components/LightbulbContext";
@@ -18,23 +18,39 @@ function SubmitButton() {
   );
 }
 
-export default function ContactForm() {
+function FormFields({ onReset }: { onReset: () => void }) {
   const [state, action] = useActionState(sendMessage, null);
   const { isBlackedOut } = useLightbulb();
 
   const inputClass = `w-full min-w-0 max-w-full border border-[#3DAB7A]/5 rounded-xl px-6
   py-3 font-homemadeapple text-sm placeholder:text-[#283618]/40 focus:outline-none focus:border-[#3DAB7A]/20 
   transition-colors resize-none overflow-visible bg-white/[0.01] ${
-  isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
-}`;
+    isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
+  }`;
 
   if (state?.success) {
     return (
       <div className="text-center space-y-4 py-8">
-        <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase">
+        <div className="p-10 pb-0 w-auto mx-auto">
+          <img
+            src="/contact-success.png"
+            alt="Contact Success visual"
+            className="w-full h-auto"
+          />
+        </div>
+        <p className="font-mono text-[#29654a] text-xl tracking-widest uppercase">
           Message sent
         </p>
-        <p className="text-[#7A9E8A]">Thanks! I'll get back to you soon.</p>
+        <p className="font-homemadeapple text-5xl text-[#283618] pb-[5%]">
+          Thanks! I'll get back to you soon.
+        </p>
+        <button
+          type="button"
+          onClick={onReset}
+          className="font-mono text-xs text-right tracking-widest uppercase text-[#3DAB7A] hover:text-[#E8F0EC] transition-colors"
+        >
+          ← back to contact form
+        </button>
       </div>
     );
   }
@@ -83,33 +99,39 @@ export default function ContactForm() {
             </p>
           </div>
 
-          <textarea
+          <input
+            type="text"
             name="name"
             required
             placeholder="Your name"
-            rows={1}
             className={inputClass}
             style={{ height: "57px" }}
           />
 
           <div style={{ width: "250px" }}>
-            <textarea
+            <input
+              type="email"
               name="email"
               required
               placeholder="your@email.com"
-              rows={1}
               className={inputClass}
-              style={{ height: "57px" }}
+              style={{ height: "40px" }}
             />
           </div>
         </div>
       </div>
 
       {state?.error && (
-        <p className={`font-mono text-xs text-red-400`}>{state.error}</p>
+        <p className="font-mono text-xs text-red-400">{state.error}</p>
       )}
 
       <SubmitButton />
     </form>
   );
+}
+
+export default function ContactForm() {
+  const [formKey, setFormKey] = useState(0);
+
+  return <FormFields key={formKey} onReset={() => setFormKey((k) => k + 1)} />;
 }

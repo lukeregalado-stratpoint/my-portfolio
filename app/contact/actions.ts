@@ -28,6 +28,7 @@ export async function sendMessage(_prev: State, formData: FormData): Promise<Sta
     await transporter.sendMail({
       from:    `"Portfolio Contact" <${process.env.GMAIL_USER}>`,
       to:      process.env.GMAIL_USER,
+      cc:      `${email}`,
       subject: `[PORTFOLIO] New message from ${name}`,
       text:    `From: ${name} <${email}>\n\n${message}`,
     });
