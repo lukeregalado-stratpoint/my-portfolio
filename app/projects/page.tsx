@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  await new Promise((r) => setTimeout(r, 0));
   return <ProjectsContent />;
 }

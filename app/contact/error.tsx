@@ -22,7 +22,7 @@ export default function ContactError({
         </p>
 
         <p className="font-homemadeapple text-4xl leading-snug">
-          Couldn't send your message. Sorry about that.
+          Couldn&apos;t send your message. Sorry about that.
         </p>
 
         <p className="font-mono text-xs text-[#2A2622]/50 tracking-wide">

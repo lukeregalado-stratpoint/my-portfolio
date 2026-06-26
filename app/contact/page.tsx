@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "Get in touch with Luke Regalado.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  await new Promise((r) => setTimeout(r, 0));
   return <ContactContent />;
 }
