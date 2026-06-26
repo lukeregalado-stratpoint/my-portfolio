@@ -47,6 +47,7 @@ export function LightbulbProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     frameRef.current = frame;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [frame]);
 
   useEffect(() => {
