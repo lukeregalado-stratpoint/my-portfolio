@@ -43,11 +43,11 @@ export function LightbulbProvider({ children }: { children: ReactNode }) {
       frameRef.current = storedFrame;
     }
     setHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     frameRef.current = frame;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [frame]);
 
   useEffect(() => {
