@@ -36,15 +36,17 @@ export function LightbulbProvider({ children }: { children: ReactNode }) {
   const isAnimating = useRef(false);
   const frameRef = useRef(0);
 
-  useEffect(() => {
+useEffect(() => {
+  const id = setTimeout(() => {
     const storedFrame = getStoredFrame();
     if (storedFrame !== null) {
       setFrame(storedFrame);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
       frameRef.current = storedFrame;
     }
     setHydrated(true);
-  }, []);
+  }, 0);
+  return () => clearTimeout(id);
+}, []);
 
   useEffect(() => {
     frameRef.current = frame;

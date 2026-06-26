@@ -10,7 +10,6 @@ const GAP = 300;
 
 export function ProjectCarousel({ projects }: { projects: Project[] }) {
   const [current, setCurrent] = useState(0);
-  const [animating, setAnimating] = useState(false);
   const animatingRef = useRef(false);
   const stageRef = useRef<HTMLDivElement>(null);
   const floatTRef = useRef(0);
@@ -127,7 +126,6 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
 
   function go(dir: 1 | -1) {
     if (animatingRef.current) return;
-    setAnimating(true);
     animatingRef.current = true;
 
     // save each card's current slot before update currentRef
@@ -141,7 +139,6 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
     setCurrent(next);
     applyPositions(true, dir);
     setTimeout(() => {
-      setAnimating(false);
       animatingRef.current = false;
     }, 600);
   }
