@@ -1,4 +1,5 @@
 "use client";
+import { useLightbulb } from "./LightbulbContext";
 import Image from "next/image";
 
 interface StackPanelProps {
@@ -14,14 +15,18 @@ const TITLE_W = 370;
 const TITLE_H = 109;
 const PEEK_PX = 100; // how much of a retracted tag stays visible
 
+
 export function StackPanel({ allTags, activeFilters, onToggle }: StackPanelProps) {
+  const { isBlackedOut } = useLightbulb();
+  const button  = isBlackedOut ? "text-[#E8F0EC]" : "text-[#283618]";
+  
   return (
     <div className="absolute right-0 left-72 top-1/2 -translate-y-1/2 z-9999 flex flex-col items-end gap-2 overflow-visible">
 
       {/* Title scales */}
       <div className="mb-2 w-[203.5px] h-[59.95px] xl:w-[64.75px] xl:h-[76.3px] 2xl:w-[314.5px] 2xl:h-[94.65]">
         <Image
-          src="/stack-title.png"
+          src={isBlackedOut ? "/stack-title-dark.png" : "/stack-title.png"}
           alt="Stack"
           width={TITLE_W}
           height={TITLE_H}
@@ -56,7 +61,7 @@ export function StackPanel({ allTags, activeFilters, onToggle }: StackPanelProps
             }}
           >
             <Image
-              src="/stack-tag.png"
+              src={isBlackedOut ? "/stack-tag-dark.png" : "/stack-tag.png"}
               alt=""
               width={TAG_W}
               height={TAG_H}
@@ -65,7 +70,7 @@ export function StackPanel({ allTags, activeFilters, onToggle }: StackPanelProps
             priority
             />
             <span
-              className="relative z-10 pl-12 font-mono font-extrabold text-3xl text-[#283618] text-left pointer-events-none"
+              className={`relative z-10 pl-12 font-mono font-extrabold text-3xl text-[#283618] text-left pointer-events-none ${button}`}
               style={{
                 opacity:    retracted ? 0 : 1,
                 transition: "opacity 0.15s ease",

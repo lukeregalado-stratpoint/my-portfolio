@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Project } from "@/app/projects/data";
+import { useLightbulb } from "./LightbulbContext";
 
 const CARD_W = 260;
 const GAP = 300;
@@ -19,6 +20,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
   const currentRef = useRef(0);
   const n = projects.length;
   const router = useRouter();
+  const { isBlackedOut } = useLightbulb();
 
   function getSlot(cardIdx: number, cur: number) {
     let diff = (cardIdx - cur + n) % n;
@@ -62,9 +64,6 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
       c.style.zIndex = String(10 - absSlot);
       c.style.filter = blur > 0 ? `blur(${blur}px)` : "none";
       c.style.border = "none"; 
-      c.style.background = isFront
-        ? "rgba(255,255,255,0.08)"
-        : "rgba(255,255,255,0.04)";
 
       const glow = c.querySelector<HTMLDivElement>(".carousel-glow");
       if (glow) glow.style.opacity = isFront ? "1" : "0";
@@ -164,7 +163,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
           >
             <div className="pointer-events-none absolute inset-0 opacity-90">
               <Image
-                src="/project-card.png"
+                src={isBlackedOut ? "/project-card-dark.png" : "/project-card.png"}
                 alt="Decorative project card"
                 fill
                 sizes="40vw"
@@ -181,27 +180,36 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
                 opacity: 0,
               }}
             />
-            <span className="absolute top-5 right-6 font-mono text-xs text-[#3DAB7A]/30"
+            
+
+              
+            <span className={`absolute top-5 right-6 font-mono text-xs ${isBlackedOut ? "text-[#3DAB7A]/50" : "text-[#3DAB7A]/30"}`}
             style={{ borderRadius: "15px", transformOrigin: "top center" }} >
               0{i + 1}
             </span>
-            <span className="absolute top-10 left-6 font-mono text-xs tracking-widest uppercase text-[#283618]/30">
+            <span className={`absolute top-10 left-6 font-mono text-xs tracking-widest uppercase 
+              ${isBlackedOut ? "text-[#E8F0EC]/20" : "text-[#283618]/30"}`}>
+
               ✦✦✦
             </span>
             <div className="relative flex h-full flex-col justify-start gap-3">
               <div className="space-y-2">
-                <p className="font-homemadeapple text-4xl leading-15 mt-[23%] mb-0 font-bold text-[#283618] tracking-tight text-center">
+                <p className={`font-homemadeapple text-4xl leading-15 mt-[23%] mb-0 font-bold tracking-tight text-center 
+                  ${isBlackedOut ? "text-[#E8F0EC]" : "text-[#283618]"}`}>
                   {project.title}
                 </p>
-                <p className="font-mono text-sm font-bold text-[#283618] leading-relaxed text-center">
+                <p className={`font-mono text-sm font-bold leading-relaxed text-center 
+                  ${isBlackedOut ? "text-[#7A9E8A]" : "text-[#283618]"}`}>
                   {project.tag}
                 </p>
               </div>
-              <p className="font-mono text-xs text-[#283618] leading-relaxed mt-0">
+              <p className={`font-mono text-xs leading-relaxed mt-0 
+                ${isBlackedOut ? "text-[#C8DDD4]" : "text-[#283618]"}`}>
                 {project.description}
               </p>
               {getSlot(i, current) === 0 && project.longDescription && (
-                <span className="font-mono italic text-[9px] text-right tracking-wide uppercase text-[#283618]/40 mt-2">
+                <span className={`font-mono italic text-[9px] text-right tracking-wide uppercase mt-2 
+                ${isBlackedOut ? "text-[#7A9E8A]/60" : "text-[#283618]/40"}`}>
                   view project →
                 </span>
               )}

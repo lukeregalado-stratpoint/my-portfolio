@@ -46,12 +46,7 @@ export default function ProjectsContent() {
           : "bg-[#F5F0E8] text-[#2A2622]"
       }`}
     >
-      {/*
-       * overflow-visible on the <section> so the stack tags can slide
-       * past the right edge of the layout without being clipped.
-       * The section itself has no overflow: hidden ancestor above it
-       * (main has no overflow set), so this is sufficient.
-       */}
+
       <section className="relative flex-1 px-8 md:px-16 lg:px-24 pt-32 pb-5 flex items-center overflow-visible">
 
         {/* Left column */}

@@ -23,9 +23,11 @@ function FormFields({ onReset }: { onReset: () => void }) {
   const { isBlackedOut } = useLightbulb();
 
   const inputClass = `w-full min-w-0 max-w-full border border-[#3DAB7A]/5 rounded-xl px-6
-  py-3 font-homemadeapple text-sm placeholder:text-[#283618]/40 focus:outline-none focus:border-[#3DAB7A]/20 
+  py-3 font-homemadeapple text-sm focus:outline-none focus:border-[#3DAB7A]/20 
   transition-colors resize-none overflow-visible bg-white/[0.01] ${
-    isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
+    isBlackedOut
+      ? "text-[#E8F0EC] placeholder:text-[#E8F0EC]/30"
+      : "text-[#2A2622] placeholder:text-[#283618]/40"
   }`;
 
   if (state?.success) {
@@ -65,7 +67,7 @@ function FormFields({ onReset }: { onReset: () => void }) {
           style={{
             width: "481px",
             flexShrink: 0,
-            backgroundImage: "url('/contact-message.png')",
+            backgroundImage: `url('${isBlackedOut ? "/contact-message-dark.png" : "/contact-message.png"}')`,
             backgroundSize: "481px 722px",
             backgroundRepeat: "no-repeat",
           }}
@@ -86,7 +88,7 @@ function FormFields({ onReset }: { onReset: () => void }) {
           style={{
             width: "462px",
             flexShrink: 0,
-            backgroundImage: "url('/contact-credentials.png')",
+            backgroundImage: `url('${isBlackedOut ? "/contact-credentials-dark.png" : "/contact-credentials.png"}')`,
             backgroundSize: "462px 722px",
             backgroundRepeat: "no-repeat",
             paddingLeft: "170px",
