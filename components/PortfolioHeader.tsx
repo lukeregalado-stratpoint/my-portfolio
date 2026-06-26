@@ -2,8 +2,6 @@
 import { useLightbulb } from "./LightbulbContext";
 import Image from "next/image";
 
-const TURNOFF_FRAME_THRESHOLD = 3;
-
 export default function PortfolioHeader() {
   const { frame, isAnimating, turningOff, triggerAnimation } = useLightbulb(); 
 

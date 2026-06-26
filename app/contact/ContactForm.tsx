@@ -47,7 +47,7 @@ function FormFields({ onReset }: { onReset: () => void }) {
           Message sent
         </p>
         <p className="font-homemadeapple text-5xl text-[#283618] pb-[5%]">
-          Thanks! I'll get back to you soon.
+          Thanks! I&apos;ll get back to you soon.
         </p>
         <button
           type="button"

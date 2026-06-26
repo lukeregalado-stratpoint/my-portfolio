@@ -8,7 +8,7 @@ export default function ProjectError({ reset }: { reset: () => void }) {
           Something went wrong
         </p>
         <h2 className="font-mono text-2xl font-bold text-[#E8F0EC]">
-          Couldn't load this project
+          Couldn&apos;t load this project
         </h2>
         <button
           onClick={reset}

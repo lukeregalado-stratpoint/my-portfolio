@@ -105,6 +105,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   // reset first card

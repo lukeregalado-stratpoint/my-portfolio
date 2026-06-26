@@ -5,7 +5,6 @@ import { useLightbulb } from "@/components/LightbulbContext";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
 import { null_projects, projects } from "@/app/projects/data";
 import { StackPanel } from "@/components/StackPanel";
-import Image from "next/image";
 
 const allTags = Array.from(
   new Set(projects.flatMap((p) => p.tags))

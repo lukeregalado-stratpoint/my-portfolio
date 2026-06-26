@@ -64,7 +64,7 @@ export default function AboutContent() {
           </h1>
           <div className={`space-y-3 font-mono text-xl leading-relaxed max-w-md ${muted}`}>
             <p>
-              I'm a software engineer based in Manila, Philippines, currently
+              I&apos;m a software engineer based in Manila, Philippines, currently
               working at Stratpoint Technologies as an intern. I specialize in
               building performant, accessible web applications using React and Next.js.
             </p>
