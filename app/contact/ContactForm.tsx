@@ -4,6 +4,7 @@ import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { sendMessage } from "./actions";
 import { useLightbulb } from "@/components/LightbulbContext";
+import Image from "next/image";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -34,10 +35,11 @@ function FormFields({ onReset }: { onReset: () => void }) {
     return (
       <div className="text-center space-y-4 py-8">
         <div className="p-10 pb-0 w-auto mx-auto">
-          <img
+          <Image
             src="/contact-success.png"
             alt="Contact Success visual"
             className="w-full h-auto"
+            fill
           />
         </div>
         <p className="font-mono text-[#29654a] text-xl tracking-widest uppercase">
@@ -110,7 +112,7 @@ function FormFields({ onReset }: { onReset: () => void }) {
             style={{ height: "57px" }}
           />
 
-          <div style={{ width: "250px" }}>
+          <div style={{ width: "270px" }}>
             <input
               type="email"
               name="email"

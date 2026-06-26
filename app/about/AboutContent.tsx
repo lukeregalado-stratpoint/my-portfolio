@@ -49,11 +49,12 @@ export default function AboutContent() {
         className="relative w-full"
         style={{ height: 'calc(100vh - 56px)' }}
       >
-        <img
+        <Image
           src={isBlackedOut ? "/about-overlay-dark.png" : "/about-overlay.png"}
           alt=""
           aria-hidden
           className="absolute inset-0 w-full h-full pointer-events-none z-10"
+          fill
         />
 
         {/* About Me */}

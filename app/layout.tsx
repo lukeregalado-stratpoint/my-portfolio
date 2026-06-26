@@ -1,11 +1,12 @@
 "use client";
 
+import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import { LightbulbProvider } from "@/components/LightbulbContext";
-import "./globals.css";
-import Link from "next/link";
-import NavBar from "@/components/NavBar";
 import { useLightbulb } from "@/components/LightbulbContext";
+import Link from "next/link";
+import Image from"next/image";
+import NavBar from "@/components/NavBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,12 +38,15 @@ function HeaderInner() {
     >
       <div className="px-8 h-14 flex items-center justify-between">
         <Link href="/" className="group inline-flex shrink-0 w-auto">
-          <img
+          <Image
             src="/luke-regalado-nametag.png"
             alt="Luke Regalado - Home"
-            className={`w-79 ml-10 h-auto transition-all duration-500 ease-out group-hover:opacity-70 group-active:opacity-50 group-active:scale-95 ${
+            width={316}
+            height={40}
+            className={`ml-10 transition-all duration-500 ease-out group-hover:opacity-70 group-active:opacity-50 group-active:scale-95 ${
               dark ? "invert" : "opacity-100"
             }`}
+            style={{ height: "auto", width: "auto"}}
           />
         </Link>
         <NavBar />
@@ -50,6 +54,8 @@ function HeaderInner() {
     </header>
   );
 }
+
+
 
 // function FooterInner() {
 //   const { isBlackedOut } = useLightbulb();

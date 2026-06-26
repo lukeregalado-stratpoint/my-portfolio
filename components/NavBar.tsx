@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useLightbulb } from "./LightbulbContext";
 import { useState } from "react";
@@ -78,10 +79,12 @@ export default function NavBar() {
             isAnimating ? "opacity-50 cursor-default" : "opacity-100 cursor-pointer"
           }`}
         >
-          <img
+          <Image
             src={toggleIcon}
             alt="Toggle dark mode"
             className={`h-10 w-auto transition-all duration-200 ${hovered ? "rotate-12" : "rotate-0"}`}
+            width="400"
+            height="400"
           />
         </button>
     </nav>

@@ -4,6 +4,7 @@ import Vignette from "@/components/Vignette";
 import PortfolioHeader from "@/components/PortfolioHeader";
 import SocialLinks from "@/components/SocialLinks";
 import BlackoutBackground from "@/components/BlackoutBackground";
+import Image from "next/image";
 import { useLightbulb } from "@/components/LightbulbContext";
 
 export default function HomePage() {
@@ -47,10 +48,12 @@ export default function HomePage() {
         <div className="flex flex-col h-full justify-center">
           {/* <div className="p-10 pb-8 pt-0 w-3/8 mx-auto"> */}
           <div className="p-10 pb-[8%] w-10/25 mx-auto">
-            <img
+            <Image
               src={isBlackedOut ? "/me-dark.gif" : "/me.gif"}
               alt="Luke Regalado self-portrait"
               className="w-full h-auto"
+              width={263}
+              height={261}
             />
           </div>
 

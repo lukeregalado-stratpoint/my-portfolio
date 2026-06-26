@@ -1,5 +1,6 @@
 "use client";
 import { useLightbulb } from "./LightbulbContext";
+import Image from "next/image";
 
 const TURNOFF_FRAME_THRESHOLD = 3;
 
@@ -15,10 +16,12 @@ export default function PortfolioHeader() {
       aria-label="Toggle the light"
       className={`bg-transparent border-none p-0 w-full h09. ${isAnimating ? "cursor-default" : "cursor-pointer"}`}
     >
-      <img
+      <Image
         src={frameSrc} 
         alt="Portfolio header"
         className="w-full h-auto"
+        width="971"
+        height="783"
       />
     </button>
     
