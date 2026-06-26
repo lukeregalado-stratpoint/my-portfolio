@@ -40,10 +40,10 @@ export function LightbulbProvider({ children }: { children: ReactNode }) {
     const storedFrame = getStoredFrame();
     if (storedFrame !== null) {
       setFrame(storedFrame);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       frameRef.current = storedFrame;
     }
     setHydrated(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
