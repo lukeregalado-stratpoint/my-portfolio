@@ -8,7 +8,9 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
+
   if (!project) return { title: "Not Found" };
+
   return {
     title: `${project.title} | Luke Regalado`,
     description: project.description,
@@ -22,6 +24,7 @@ export function generateStaticParams() {
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
+  
   if (!project) notFound();
 
   await new Promise((r) => setTimeout(r, 0));

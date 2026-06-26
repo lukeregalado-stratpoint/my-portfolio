@@ -4,7 +4,7 @@ export default function HomeLoading() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 flex-1 min-h-0 relative z-10 items-center">
 
-        {/* Left column — PortfolioHeader + SocialLinks */}
+        {/* Left column PortfolioHeader + SocialLinks */}
         <div className="flex flex-col h-full justify-center pl-50">
           <div className="p-10 mt-[2%] w-14/16 mx-auto">
             <div className="relative">
@@ -12,7 +12,7 @@ export default function HomeLoading() {
               {/* PortfolioHeader image block */}
               <div className="w-full aspect-[520/320] rounded-2xl bg-[#D9C9A8]/50" />
 
-              {/* SocialLinks row — mirrors absolute position */}
+              {/* SocialLinks row mirrors absolute position */}
               <div
                 className="absolute flex gap-3"
                 style={{ top: "62%", left: "12%" }}
@@ -26,7 +26,7 @@ export default function HomeLoading() {
           </div>
         </div>
 
-        {/* Right column — gif + bio */}
+        {/* Right column gif + bio */}
         <div className="flex flex-col h-full justify-center">
 
           {/* gif placeholder */}

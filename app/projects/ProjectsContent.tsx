@@ -23,6 +23,7 @@ export default function ProjectsContent() {
   const filteredProjects = useMemo(() => {
     if (activeFilters.length === allTags.length) return null_projects;
     return projects.filter((p) => {
+
       // show only projects matching activated filters
       return activeFilters.every((f) => p.tags.includes(f));
     });
@@ -30,10 +31,12 @@ export default function ProjectsContent() {
   
   const realProjects = projects.filter((p) => p.tags.length > 0);
   const primaryStack = allTags[0] ?? "React";
+
   const earliestYear = realProjects.reduce(
     (min, p) => (p.year < min ? p.year : min),
     realProjects[0]?.year ?? "2026"
   );
+
   const currentYear = new Date().getFullYear();
   const yearsExp = currentYear - Number(earliestYear);
 
@@ -50,9 +53,11 @@ export default function ProjectsContent() {
 
         {/* Left column */}
         <div className="hidden lg:flex flex-col items-start gap-4 w-48 shrink-0">
+
           <p className="font-mono text-[#283618] text-xs tracking-widest uppercase">
             idk wat to put here!
           </p>
+
           <p
             className={`text-sm leading-relaxed max-w-10rem transition-colors duration-500 ${
               isBlackedOut ? "text-[#7A9E8A]" : "text-[#5C564C]"
@@ -60,14 +65,17 @@ export default function ProjectsContent() {
           >
             blablabla
           </p>
+
         </div>
 
         {/* Center column */}
         <div className="flex-1 flex flex-col items-center justify-center gap-10 overflow-visible">
           <div className="text-center max-w-md">
+
             <p className="font-mono text-[#283618] text-xs tracking-widest mb-3">
               View my projects!
             </p>
+
             <h1
               className={`font-homemadeapple text-5xl font-bold tracking-tight transition-colors duration-500 ${
                 isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
@@ -75,6 +83,7 @@ export default function ProjectsContent() {
             >
               Projects
             </h1>
+
           </div>
 
           <ProjectCarousel
@@ -118,6 +127,7 @@ export default function ProjectsContent() {
           { value: "PH", label: "Based in Manila" },
         ].map(({ value, label }) => (
           <div key={label}>
+
             <p
               className={`font-mono text-3xl font-bold transition-colors duration-500 ${
                 isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
@@ -125,6 +135,7 @@ export default function ProjectsContent() {
             >
               {value}
             </p>
+            
             <p
               className={`text-sm mt-1 transition-colors duration-500 ${
                 isBlackedOut ? "text-[#4A6A5A]" : "text-[#8A8378]"

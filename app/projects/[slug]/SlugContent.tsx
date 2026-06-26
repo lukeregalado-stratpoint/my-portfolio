@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 export default function SlugContent({ slug }: { slug: string }) {
   const { isBlackedOut } = useLightbulb();
   const project = projects.find((p) => p.slug === slug);
+  
   if (!project) notFound();
 
   return (
@@ -33,11 +34,13 @@ export default function SlugContent({ slug }: { slug: string }) {
           <p className="font-mono text-[#3DAB7A] text-xs tracking-widest uppercase mb-4">
             {project.year}
           </p>
+
           <h1 className={`font-mono text-4xl md:text-5xl font-bold tracking-tight mb-6 transition-colors duration-500 ${
             isBlackedOut ? "text-[#E8F0EC]" : "text-[#2A2622]"
           }`}>
             {project.title}
           </h1>
+
           <p className={`text-base leading-relaxed mb-8 transition-colors duration-500 ${
             isBlackedOut ? "text-[#7A9E8A]" : "text-[#5C564C]"
           }`}>
@@ -47,18 +50,21 @@ export default function SlugContent({ slug }: { slug: string }) {
           {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-8">
             {project.tags.map((tag) => (
+
               <span
                 key={tag}
                 className="font-mono text-xs tracking-widest uppercase px-3 py-1 rounded-full border border-[#3DAB7A]/30 text-[#3DAB7A]"
               >
                 {tag}
               </span>
+
             ))}
           </div>
 
           {/* Links */}
           <div className="flex gap-4">
             {project.github && (
+
               <a
                 href={project.github}
                 target="_blank"
@@ -69,6 +75,7 @@ export default function SlugContent({ slug }: { slug: string }) {
               >
                 GitHub →
               </a>
+
             )}
             {project.live && (
               <a
@@ -82,7 +89,9 @@ export default function SlugContent({ slug }: { slug: string }) {
                 Live Site →
               </a>
             )}
+
           </div>
+          
         </div>
 
       </div>
