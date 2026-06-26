@@ -107,18 +107,19 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
     };
   }, []);
   
+  // reset first card
   useEffect(() => {
-    // remove necessary refs if projectlist shrinks
     cardRefs.current = cardRefs.current.slice(0, projects.length);
     floatPhases.current = projects.map((_, i) => i * 1.3);
 
-    // reset first card
-    currentRef.current = 0;
-    setCurrent(0);
+    const id = setTimeout(() => {
+      currentRef.current = 0;
+      setCurrent(0);
+      applyPositions(false);
+    }, 0);
 
-    // defer
-    const id = setTimeout(() => applyPositions(false), 0);
     return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projects]);
 
   

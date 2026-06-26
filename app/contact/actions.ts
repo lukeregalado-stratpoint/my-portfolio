@@ -9,9 +9,6 @@ export async function sendMessage(_prev: State, formData: FormData): Promise<Sta
   const email   = formData.get("email")   as string;
   const message = formData.get("message") as string;
 
-  // console.log("USER:", process.env.GMAIL_USER);
-  // console.log("PASS:", process.env.GMAIL_PASS ? "loaded" : "undefined");
-
   if (!name || !email || !message) {
     return { success: false, error: "All fields are required." };
   }
@@ -19,8 +16,11 @@ export async function sendMessage(_prev: State, formData: FormData): Promise<Sta
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "dud",
-      pass: process.env.GMAIL_PASS,
+      type:         "OAuth2",
+      user:         process.env.GMAIL_USER,
+      clientId:     process.env.GMAIL_CLIENT_ID,
+      clientSecret: process.env.GMAIL_CLIENT_SECRET,
+      refreshToken: process.env.GMAIL_REFRESH_TOKEN,
     },
   });
 
@@ -28,11 +28,9 @@ export async function sendMessage(_prev: State, formData: FormData): Promise<Sta
     await transporter.sendMail({
       from:    `"Portfolio Contact" <${process.env.GMAIL_USER}>`,
       to:      process.env.GMAIL_USER,
-      cc:      email,
       subject: `[PORTFOLIO] New message from ${name}`,
       text:    `From: ${name} <${email}>\n\n${message}`,
     });
-
     await transporter.sendMail({
       from:    `"Luke Regalado" <${process.env.GMAIL_USER}>`,
       to:      email,

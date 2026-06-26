@@ -39,7 +39,8 @@ function FormFields({ onReset }: { onReset: () => void }) {
             src="/contact-success.png"
             alt="Contact Success visual"
             className="w-full h-auto"
-            fill
+            width={1546}
+            height={301}
           />
         </div>
         <p className="font-mono text-[#29654a] text-xl tracking-widest uppercase">
