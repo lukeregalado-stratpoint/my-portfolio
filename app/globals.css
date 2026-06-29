@@ -3,6 +3,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --color-parchment: #F5F0E8;
+  --color-ink: #2A2622;
+  --color-forest: #283618;
+  --color-sage: #3DAB7A;
+  --color-sage-deep: #29654A;
+  --color-muted: #5C564C;
+  --color-bone: #D9C9A8;
+
+  /* dark mode equivalents */
+  --color-dark-bg: #0e0e0e;
+  --color-dark-text: #E8F0EC;
+  --color-dark-muted: #7A9E8A;
+  --color-dark-mono: #C8DDD4;
+  --color-dark-faint: #4A6A5A;
+}
+
 * {
   box-sizing: border-box;
 }

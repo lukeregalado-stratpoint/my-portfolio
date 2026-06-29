@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import ProjectsContent from "./ProjectsContent";
 
 export const metadata: Metadata = {
-  title: "Luke Regalado - Software Engineer",
-  description:
-    "Portfolio of Luke Regalado, a software engineer building clean, fast, and thoughtful web experiences.",
+  title: "Projects | Luke Regalado",
+  description: "A collection of projects built by Luke Regalado: web apps, tools, and experiments.",
   openGraph: {
     title: "Luke Regalado - Software Engineer",
     description:
-      "Portfolio of Luke Regalado, a software engineer building clean, fast, and thoughtful web experiences.",
+      "Projects of Luke Regalado.",
     url: "https://my-portfolio-foo3.vercel.app/",
     siteName: "Luke Regalado",
     locale: "en_US",
