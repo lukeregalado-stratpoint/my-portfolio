@@ -182,33 +182,33 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
             
 
               
-            <span className={`absolute top-5 right-6 font-mono text-xs ${isBlackedOut ? "text-[#3DAB7A]/50" : "text-[#3DAB7A]/30"}`}
+            <span className={`absolute top-5 right-6 font-mono text-xs ${isBlackedOut ? "text-sage/50" : "text-sage/30"}`}
             style={{ borderRadius: "15px", transformOrigin: "top center" }} >
               0{i + 1}
             </span>
             <span className={`absolute top-10 left-6 font-mono text-xs tracking-widest uppercase 
-              ${isBlackedOut ? "text-[#E8F0EC]/20" : "text-[#283618]/30"}`}>
+              ${isBlackedOut ? "text-dark-text/20" : "text-forest/30"}`}>
 
               ✦✦✦
             </span>
             <div className="relative flex h-full flex-col justify-start gap-3">
               <div className="space-y-2">
                 <p className={`font-homemadeapple text-4xl leading-15 mt-[23%] mb-0 font-bold tracking-tight text-center 
-                  ${isBlackedOut ? "text-[#E8F0EC]" : "text-[#283618]"}`}>
+                  ${isBlackedOut ? "text-dark-text" : "text-forest"}`}>
                   {project.title}
                 </p>
                 <p className={`font-mono text-sm font-bold leading-relaxed text-center 
-                  ${isBlackedOut ? "text-[#7A9E8A]" : "text-[#283618]"}`}>
+                  ${isBlackedOut ? "text-dark-muted" : "text-forest"}`}>
                   {project.tag}
                 </p>
               </div>
               <p className={`font-mono text-xs leading-relaxed mt-0 
-                ${isBlackedOut ? "text-[#C8DDD4]" : "text-[#283618]"}`}>
+                ${isBlackedOut ? "text-dark-mono" : "text-forest"}`}>
                 {project.description}
               </p>
               {getSlot(i, current) === 0 && project.longDescription && (
                 <span className={`font-mono italic text-[9px] text-right tracking-wide uppercase mt-2 
-                ${isBlackedOut ? "text-[#7A9E8A]/60" : "text-[#283618]/40"}`}>
+                ${isBlackedOut ? "text-dark-muted/60" : "text-forest/40"}`}>
                   view project →
                 </span>
               )}
@@ -222,7 +222,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
           type="button"
           aria-label="Previous project"
           onClick={() => go(-1)}
-          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/0.03 border border-white/10 text-[#7A9E8A] hover:text-[#E8F0EC] hover:border-white/20 transition-colors flex items-center justify-center text-lg"
+          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/0.03 border border-white/10 text-dark-muted hover:text-dark-text hover:border-white/20 transition-colors flex items-center justify-center text-lg"
         >
           ‹
         </button>
@@ -244,7 +244,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
           type="button"
           aria-label="Next project"
           onClick={() => go(1)}
-          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/0.03 border border-white/10 text-[#7A9E8A] hover:text-[#E8F0EC] hover:border-white/20 transition-colors flex items-center justify-center text-lg"
+          className="w-9 h-9 rounded-full backdrop-blur-md bg-white/0.03 border border-white/10 text-dark-muted hover:text-dark-text hover:border-white/20 transition-colors flex items-center justify-center text-lg"
         >
           ›
         </button>

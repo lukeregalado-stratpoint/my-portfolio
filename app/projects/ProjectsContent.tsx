@@ -123,7 +123,7 @@ export default function ProjectsContent() {
       </section>
 
       {/* Stats strip */}
-      <section
+      {/* <section
         className={`mx-8 md:mx-16 lg:mx-32 mb-24 relative backdrop-blur-xl border rounded-2xl px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 transition-colors duration-500 ${
           isBlackedOut
             ? "bg-white/0.02 border-sage/10 shadow-[0_0_40px_rgba(61,171,122,0.06)]"
@@ -156,7 +156,7 @@ export default function ProjectsContent() {
             </p>
           </div>
         ))}
-      </section>
+      </section> */}
     </main>
   );
 }
