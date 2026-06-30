@@ -5,6 +5,7 @@ import { useLightbulb } from "@/components/LightbulbContext";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
 import { null_projects, projects } from "@/app/projects/data";
 import { StackPanel } from "@/components/StackPanel";
+import Image from "next/image";
 
 const allTags = Array.from(
   new Set(projects.flatMap((p) => p.tags))
@@ -48,6 +49,16 @@ export default function ProjectsContent() {
           : "bg-parchment text-ink"
       }`}
     >
+      
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Image
+          src={isBlackedOut ? "/projects-overlay-dark.png" : "/projects-overlay.png"}
+          alt=""
+          aria-hidden
+          fill
+          className="object-cover"
+        />
+      </div>
 
       <section className="relative flex-1 px-8 md:px-16 lg:px-24 pt-32 pb-5 flex items-center overflow-visible">
 

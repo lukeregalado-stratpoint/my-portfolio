@@ -2,6 +2,19 @@
 
 import Image from "next/image";
 import { useLightbulb } from "@/components/LightbulbContext";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPrisma,
+  SiGit,
+  SiDocker,
+  SiVercel,
+  SiGithubactions,
+} from "react-icons/si";
 
 const timeline = [
   {
@@ -25,6 +38,27 @@ const timeline = [
 
 ];
 
+const frontendStack = [
+  { label: "React", Icon: SiReact },
+  { label: "Next.js", Icon: SiNextdotjs },
+  { label: "TypeScript", Icon: SiTypescript },
+  { label: "Tailwind CSS", Icon: SiTailwindcss },
+];
+ 
+const backendStack = [
+  { label: "Node.js", Icon: SiNodedotjs },
+  { label: "REST APIs", Icon: "✦" },
+  { label: "PostgreSQL", Icon: SiPostgresql },
+  { label: "Prisma", Icon: SiPrisma },
+];
+ 
+const toolingStack = [
+  { label: "Git", Icon: SiGit },
+  { label: "Docker", Icon: SiDocker },
+  { label: "Vercel", Icon: SiVercel },
+  { label: "GitHub Actions", Icon: SiGithubactions },
+];
+
 function getExpOverlay(i: number, total: number, isBlackedOut: boolean): string {
   const suffix = isBlackedOut ? "-dark" : "";
   if (i === 0) return `/latest-exp${suffix}.png`;
@@ -35,14 +69,14 @@ function getExpOverlay(i: number, total: number, isBlackedOut: boolean): string 
 export default function AboutContent() {
   const { isBlackedOut } = useLightbulb();
 
-  const text  = isBlackedOut ? "text-[#E8F0EC]" : "text-[#283618]";
-  const muted = isBlackedOut ? "text-[#7A9E8A]" : "text-[#5C564C]";
-  const mono  = isBlackedOut ? "text-[#C8DDD4]" : "text-[#2A2622]";
+  const text  = isBlackedOut ? "text-dark-text" : "text-forest";
+  const muted = isBlackedOut ? "text-dark-muted" : "text-muted";
+  const mono  = isBlackedOut ? "text-dark-mono" : "ink";
 
   return (
     <main
       className={`relative min-h-screen pt-14 transition-colors duration-500 ${
-        isBlackedOut ? "bg-[#0e0e0e]" : "bg-[#F5F0E8]"
+        isBlackedOut ? "bg-dark-bg" : "bg-parchment"
       }`}
     >
       <div
@@ -59,10 +93,18 @@ export default function AboutContent() {
 
         {/* About Me */}
         <div className="absolute z-20" style={{ top: "15%", left: "15%" }}>
-          <h1 className={`font-mono text-4xl font-extrabold tracking-tight mb-6 leading-snug ${text}`}>
-            Live in the question.<br />Experience the answers.
+          <Image
+            src={isBlackedOut ? "/me-dark.gif" : "/me.gif"}
+            alt="Luke Regalado self-portrait"
+            className="w-96 h-auto mb-6"
+            width={263}
+            height={261}
+            unoptimized
+          />
+          <h1 className={`font-lexend text-8xl font-extrabold tracking-tight mb-6 leading-snug ${text}`}>
+            hello!
           </h1>
-          <div className={`space-y-3 font-mono text-xl leading-relaxed max-w-md ${muted}`}>
+          <div className={`space-y-3 font-quicksand text-xl max-w-xl text-justify ${mono}`}>
             <p>
               I&apos;m a software engineer based in Manila, Philippines, currently
               working at Stratpoint Technologies as an intern. I specialize in
@@ -76,39 +118,60 @@ export default function AboutContent() {
         </div>
 
         {/* Frontend */}
-        <div className="absolute z-20" style={{ top: "16%", left: "48%" }}>
-          <ul className="space-y-1">
-            {["React", "Next.js", "TypeScript", "Tailwind CSS"].map((item) => (
-              <li key={item} className={`font-bold text-lg font-mono ${mono}`}>{item}</li>
+        <h1 className={`font-lexend text-8xl font-extrabold tracking-tight mb-6 leading-snug absolute z-20 ${text}`}
+        style={{ top: "7%", left: "47%" }}>
+          skills 
+        </h1>
+        <div className="absolute z-20" style={{ top: "20%", left: "48%" }}>
+          <ul className="space-y-2">
+            {frontendStack.map(({ label, Icon }) => (
+              <li key={label} className={`flex items-center gap-2 font-bold text-lg font-quicksand ${mono}`}>
+                {Icon && <Icon className="shrink-0" size={20} />}
+                {label}
+              </li>
             ))}
           </ul>
         </div>
-
+ 
         {/* Backend */}
-        <div className="absolute z-20" style={{ top: "19%", left: "60%", transform: "rotate(5.8deg)" }}>
-          <ul className="space-y-1">
-            {["Node.js", "REST APIs", "PostgreSQL", "Prisma"].map((item) => (
-              <li key={item} className={`font-bold text-lg font-mono ${mono}`}>{item}</li>
+        <div className="absolute z-20" style={{ top: "20%", left: "59%" }}>
+          <ul className="space-y-2">
+            {backendStack.map(({ label, Icon }) => (
+              <li key={label} className={`flex items-center gap-2 font-bold text-lg font-quicksand ${mono}`}>
+                {typeof Icon === "string" ? (
+                  <span className="shrink-0">{Icon}</span>
+                ) : Icon ? (
+                  <Icon className="shrink-0" size={20} />
+                ) : null}
+                {label}
+              </li>
             ))}
           </ul>
         </div>
-
+ 
         {/* Tooling */}
-        <div className="absolute z-20" style={{ top: "16%", left: "72%", transform: "rotate(-3deg)" }}>
-          <ul className="space-y-1">
-            {["Git", "Docker", "Vercel", "GitHub Actions"].map((item) => (
-              <li key={item} className={`font-bold text-lg font-mono ${mono}`}>{item}</li>
+        <div className="absolute z-20" style={{ top: "20%", left: "71%" }}>
+          <ul className="space-y-2">
+            {toolingStack.map(({ label, Icon }) => (
+              <li key={label} className={`flex items-center gap-2 font-bold text-lg font-quicksand ${mono}`}>
+                {Icon && <Icon className="shrink-0" size={20} />}
+                {label}
+              </li>
             ))}
           </ul>
         </div>
 
         {/* Experience */}
-        <div className="absolute z-20" style={{ top: "40%", left: "47%", width: "34%" }}>
-          <div className="flex flex-col gap-0">
+        <div className="absolute z-20" style={{ top: "43%", left: "47%", width: "34%" }}>
+          <h1 className={`font-lexend text-8xl font-extrabold tracking-tight mb-6 leading-snug absolute z-20 ${text}`}
+          style={{ top: "-15%", left: "0%" }}>
+            experience
+          </h1>
+          <div className="flex flex-col gap-0 mt-13">
             {timeline.map(({ year, role, company, desc }, i) => (
               <div
                 key={i} 
-                className={`relative px-10 h-auto ${i === 0 ? 'pt-12' : 'pt-6'} pb-0 sm:h-48 md:h-36`}
+                className="relative px-10 h-auto pb-0 sm:h-48 pt-6 md:h-36"
               >
 
                 <Image

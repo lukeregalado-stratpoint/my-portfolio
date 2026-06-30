@@ -14,7 +14,7 @@ export default function ContactError({
   }, [error]);
 
   return (
-    <main className="min-h-screen pt-14 flex items-center justify-center bg-[#F5F0E8] text-[#2A2622]">
+    <main className="min-h-screen pt-14 flex items-center justify-center bg-parchment text-ink">
       <div className="text-center space-y-6 py-8 max-w-md mx-auto px-6">
 
         <p className="font-mono text-[#29654a] text-xs tracking-widest uppercase">
@@ -25,13 +25,13 @@ export default function ContactError({
           Couldn&apos;t send your message. Sorry about that.
         </p>
 
-        <p className="font-mono text-xs text-[#2A2622]/50 tracking-wide">
+        <p className="font-mono text-xs text-ink/50 tracking-wide">
           {error?.message ?? "An unexpected error occurred."}
         </p>
 
         <button
           onClick={reset}
-          className="font-mono text-xs tracking-widest uppercase px-5 py-3 rounded-xl bg-[#3DAB7A]/20 border border-[#3DAB7A]/30 text-[#3DAB7A] hover:bg-[#3DAB7A]/30 transition-colors"
+          className="font-mono text-xs tracking-widest uppercase px-5 py-3 rounded-xl bg-sage/20 border border-sage/30 text-sage hover:bg-sage/30 transition-colors"
         >
           Try again
         </button>

@@ -43,11 +43,12 @@ export default function HomePage() {
               className="w-full h-auto"
               width={263}
               height={261}
+              unoptimized
             />
           </div>
           <div className="p-10 pt-0 w-2/3 mx-auto relative" style={{ top: "-8%" }}>
             <p className={`font-mono text-2xl tracking-widest leading-relaxed transition-colors duration-500 ${
-              isBlackedOut ? "text-[#EDE8DC]" : "text-[#5C564C]"
+              isBlackedOut ? "text-[#EDE8DC]" : "text-muted"
             }`}>
               A software engineer who enjoys building purposeful and creative
               solutions through clean, thoughtful code. Curious by nature;

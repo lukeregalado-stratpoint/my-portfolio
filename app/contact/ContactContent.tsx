@@ -9,7 +9,7 @@ export default function ContactContent() {
   return (
     <main
       className={`min-h-screen pt-14 flex items-center justify-center transition-colors duration-500 ${
-        isBlackedOut ? "bg-[#0e0e0e] text-[#E8F0EC]" : "bg-[#F5F0E8] text-[#2A2622]"
+        isBlackedOut ? "bg-dark-bg text-dark-text" : "bg-parchment text-ink"
       }`}
       // style={{
       //   backgroundImage: "url('/contact-letter.png')",
