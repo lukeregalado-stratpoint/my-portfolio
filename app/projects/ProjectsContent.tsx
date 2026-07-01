@@ -60,7 +60,7 @@ export default function ProjectsContent() {
         />
       </div>
 
-      <section className="relative flex-1 px-8 md:px-16 lg:px-24 pt-32 pb-5 flex items-center overflow-visible">
+      <section className="relative flex-1 px-8 md:px-16 lg:px-24 pt-18 pb-5 flex items-center overflow-visible">
 
         {/* Left column */}
         <div className="hidden lg:flex flex-col items-start gap-4 w-48 shrink-0">

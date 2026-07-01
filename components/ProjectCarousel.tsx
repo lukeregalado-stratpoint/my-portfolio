@@ -182,7 +182,7 @@ export function ProjectCarousel({ projects }: { projects: Project[] }) {
             
 
               
-            <span className={`absolute top-5 right-6 font-mono text-xs ${isBlackedOut ? "text-sage/50" : "text-sage/30"}`}
+            <span className={`absolute top-10 right-6 font-mono  text-xs ${isBlackedOut ? "text-sage/50" : "text-ink/30"}`}
             style={{ borderRadius: "15px", transformOrigin: "top center" }} >
               0{i + 1}
             </span>

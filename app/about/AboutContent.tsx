@@ -35,7 +35,6 @@ const timeline = [
     company: "De La Salle University - Manila",
     desc: "Currently studying with a major in Software Technology.",
   },
-
 ];
 
 const frontendStack = [
@@ -44,14 +43,14 @@ const frontendStack = [
   { label: "TypeScript", Icon: SiTypescript },
   { label: "Tailwind CSS", Icon: SiTailwindcss },
 ];
- 
+
 const backendStack = [
   { label: "Node.js", Icon: SiNodedotjs },
   { label: "REST APIs", Icon: "✦" },
   { label: "PostgreSQL", Icon: SiPostgresql },
   { label: "Prisma", Icon: SiPrisma },
 ];
- 
+
 const toolingStack = [
   { label: "Git", Icon: SiGit },
   { label: "Docker", Icon: SiDocker },
@@ -66,12 +65,54 @@ function getExpOverlay(i: number, total: number, isBlackedOut: boolean): string 
   return `/between-exp${suffix}.png`;
 }
 
+function StackList({
+  stack,
+  mono,
+  textClass = "text-lg",
+  iconClass = "w-5 h-5",
+}: {
+  stack: { label: string; Icon: any }[];
+  mono: string;
+  textClass?: string;
+  iconClass?: string;
+}) {
+  return (
+    <ul className="space-y-2">
+      {stack.map(({ label, Icon }) => (
+        <li
+          key={label}
+          className={`flex items-center gap-2 font-bold ${textClass} font-quicksand ${mono}`}
+        >
+          {typeof Icon === "string" ? (
+            <span className={`shrink-0 flex items-center justify-center ${iconClass}`}>{Icon}</span>
+          ) : Icon ? (
+            <Icon className={`shrink-0 ${iconClass}`} />
+          ) : null}
+          {label}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function AboutContent() {
   const { isBlackedOut } = useLightbulb();
 
-  const text  = isBlackedOut ? "text-dark-text" : "text-forest";
+  const text = isBlackedOut ? "text-dark-text" : "text-forest";
   const muted = isBlackedOut ? "text-dark-muted" : "text-muted";
-  const mono  = isBlackedOut ? "text-dark-mono" : "ink";
+  const mono = isBlackedOut ? "text-dark-mono" : "ink";
+
+  const fluid = {
+    heading: "text-[clamp(2.75rem,8.5vmin,7rem)]", 
+    bodyText: "text-[clamp(0.85rem,1.8vmin,1.2rem)]", 
+    stackText: "text-[clamp(0.8rem,1.6vmin,1.05rem)]", 
+    stackIcon: "w-[clamp(0.85rem,1.7vmin,1.3rem)] h-[clamp(0.85rem,1.7vmin,1.3rem)]",
+    year: "text-[clamp(1.3rem,3.2vmin,2.4rem)]", 
+    yearWidth: "w-[clamp(3.3rem,7vmin,5.5rem)]", 
+    role: "text-[clamp(0.85rem,1.8vmin,1.2rem)]", 
+    company: "text-[clamp(0.8rem,1.6vmin,1.05rem)]", 
+    desc: "text-[clamp(0.7rem,1.45vmin,0.95rem)]", 
+  };
 
   return (
     <main
@@ -79,10 +120,8 @@ export default function AboutContent() {
         isBlackedOut ? "bg-dark-bg" : "bg-parchment"
       }`}
     >
-      <div
-        className="relative w-full"
-        style={{ height: 'calc(100vh - 56px)' }}
-      >
+      {/* ============ DESKTOP (lg and up) - fluid, proportionally-scaling canvas ============ */}
+      <div className="hidden lg:block relative w-full" style={{ height: "calc(100vh - 56px)" }}>
         <Image
           src={isBlackedOut ? "/about-overlay-dark.png" : "/about-overlay.png"}
           alt=""
@@ -96,15 +135,17 @@ export default function AboutContent() {
           <Image
             src={isBlackedOut ? "/me-dark.gif" : "/me.gif"}
             alt="Luke Regalado self-portrait"
-            className="w-96 h-auto mb-6"
+            className="w-[clamp(9rem,26vmin,17rem)] h-auto mb-6"
             width={263}
             height={261}
             unoptimized
           />
-          <h1 className={`font-lexend text-8xl font-extrabold tracking-tight mb-6 leading-snug ${text}`}>
+          <h1 className={`font-lexend ${fluid.heading} font-extrabold tracking-tight mb-6 leading-snug ${text}`}>
             hello!
           </h1>
-          <div className={`space-y-3 font-quicksand text-xl max-w-xl text-justify ${mono}`}>
+          <div
+            className={`space-y-3 font-quicksand ${fluid.bodyText} max-w-[clamp(16rem,25vw,30rem)] text-justify ${mono}`}
+          >
             <p>
               I&apos;m a software engineer based in Manila, Philippines, currently
               working at Stratpoint Technologies as an intern. I specialize in
@@ -118,62 +159,56 @@ export default function AboutContent() {
         </div>
 
         {/* Frontend */}
-        <h1 className={`font-lexend text-8xl font-extrabold tracking-tight mb-6 leading-snug absolute z-20 ${text}`}
-        style={{ top: "7%", left: "47%" }}>
-          skills 
+        <h1
+          className={`font-lexend ${fluid.heading} font-extrabold tracking-tight mb-6 leading-snug absolute z-20 ${text}`}
+          style={{ top: "6%", left: "47%" }}
+        >
+          skills
         </h1>
-        <div className="absolute z-20" style={{ top: "20%", left: "48%" }}>
-          <ul className="space-y-2">
-            {frontendStack.map(({ label, Icon }) => (
-              <li key={label} className={`flex items-center gap-2 font-bold text-lg font-quicksand ${mono}`}>
-                {Icon && <Icon className="shrink-0" size={20} />}
-                {label}
-              </li>
-            ))}
-          </ul>
+        <div className="absolute z-20" style={{ top: "19%", left: "48%" }}>
+          <StackList
+            stack={frontendStack}
+            mono={mono}
+            textClass={fluid.stackText}
+            iconClass={fluid.stackIcon}
+          />
         </div>
- 
+
         {/* Backend */}
-        <div className="absolute z-20" style={{ top: "20%", left: "59%" }}>
-          <ul className="space-y-2">
-            {backendStack.map(({ label, Icon }) => (
-              <li key={label} className={`flex items-center gap-2 font-bold text-lg font-quicksand ${mono}`}>
-                {typeof Icon === "string" ? (
-                  <span className="shrink-0">{Icon}</span>
-                ) : Icon ? (
-                  <Icon className="shrink-0" size={20} />
-                ) : null}
-                {label}
-              </li>
-            ))}
-          </ul>
+        <div className="absolute z-20" style={{ top: "19%", left: "59%" }}>
+          <StackList
+            stack={backendStack}
+            mono={mono}
+            textClass={fluid.stackText}
+            iconClass={fluid.stackIcon}
+          />
         </div>
- 
+
         {/* Tooling */}
-        <div className="absolute z-20" style={{ top: "20%", left: "71%" }}>
-          <ul className="space-y-2">
-            {toolingStack.map(({ label, Icon }) => (
-              <li key={label} className={`flex items-center gap-2 font-bold text-lg font-quicksand ${mono}`}>
-                {Icon && <Icon className="shrink-0" size={20} />}
-                {label}
-              </li>
-            ))}
-          </ul>
+        <div className="absolute z-20" style={{ top: "19%", left: "71.5%" }}>
+          <StackList
+            stack={toolingStack}
+            mono={mono}
+            textClass={fluid.stackText}
+            iconClass={fluid.stackIcon}
+          />
         </div>
 
         {/* Experience */}
-        <div className="absolute z-20" style={{ top: "43%", left: "47%", width: "34%" }}>
-          <h1 className={`font-lexend text-8xl font-extrabold tracking-tight mb-6 leading-snug absolute z-20 ${text}`}
-          style={{ top: "-15%", left: "0%" }}>
+        <div className="absolute z-20" style={{ top: "42%", left: "47%", width: "34%" }}>
+          <h1
+            className={`font-lexend ${fluid.heading} font-extrabold tracking-tight mb-6 leading-snug absolute z-20 ${text}`}
+            style={{ top: "-16%", left: "0%" }}
+          >
             experience
           </h1>
-          <div className="flex flex-col gap-0 mt-13">
+          <div className="flex flex-col gap-0 mt-10 z-21">
             {timeline.map(({ year, role, company, desc }, i) => (
               <div
-                key={i} 
-                className="relative px-10 h-auto pb-0 sm:h-48 pt-6 md:h-36"
+                key={i}
+                className="relative pt-[clamp(0.85rem,2.1vmin,1.75rem)] pb-0 px-[clamp(1.25rem,2.08vw,3rem)]"
+                style={{ height: "clamp(7.5rem, 15vmin, 10.5rem)" }}
               >
-
                 <Image
                   src={getExpOverlay(i, timeline.length, isBlackedOut)}
                   alt=""
@@ -183,18 +218,19 @@ export default function AboutContent() {
                   className="object-fill pointer-events-none"
                 />
                 <div className="relative z-10 flex gap-6">
-                  <p className={`font-homemadeapple text-4xl w-20 shrink-0 pt-0.5 ${muted}`}>{year}</p>
+                  <p className={`font-homemadeapple ${fluid.year} ${fluid.yearWidth} shrink-0 pt-0.5 ${muted}`}>
+                    {year}
+                  </p>
                   <div>
-                    <p className={`font-mono text-xl font-bold ${text}`}>{role}</p>
-                    <p className={`font-mono text-lg ${text}`}>{company}</p>
-                    <p className={`font-mono text-md leading-tight ${muted}`}>{desc}</p>
+                    <p className={`font-mono ${fluid.role} font-bold ${text}`}>{role}</p>
+                    <p className={`font-mono ${fluid.company} ${text}`}>{company}</p>
+                    <p className={`font-mono ${fluid.desc} leading-tight ${muted}`}>{desc}</p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-
       </div>
     </main>
   );

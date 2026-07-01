@@ -25,7 +25,7 @@ export default function HomePage() {
       />
       <div className="flex flex-1 min-h-0 relative z-10 items-center justify-center">
         <div className="flex flex-col h-full justify-center">
-          <div className="p-10 mt-[2%] w-15/16 mx-auto">
+          <div className="p-10 mt-[2%] w-14/16 mx-auto">
             <div className="relative z-101">
               <PortfolioHeader />
               <div className="absolute left-25" style={{ top: "62%", left: "12%" }}>
