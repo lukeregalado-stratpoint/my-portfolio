@@ -65,7 +65,7 @@ export default function ProjectsContent() {
         {/* Left column */}
         <div className="hidden lg:flex flex-col items-start gap-4 w-48 shrink-0">
 
-          <p className="font-mono text-forest text-xs tracking-widest uppercase">
+          {/* <p className="font-mono text-forest text-xs tracking-widest uppercase">
             idk wat to put here!
           </p>
 
@@ -75,7 +75,7 @@ export default function ProjectsContent() {
             }`}
           >
             blablabla
-          </p>
+          </p> */}
 
         </div>
 
@@ -83,7 +83,8 @@ export default function ProjectsContent() {
         <div className="flex-1 flex flex-col items-center justify-center gap-10 overflow-visible">
           <div className="text-center max-w-md">
 
-            <p className="font-mono text-forest text-xs tracking-widest mb-3">
+            <p className={`font-mono text-forest text-xs tracking-widest mb-3 
+              ${isBlackedOut ? "text-dark-muted" : "text-muted"}`}>
               View my projects!
             </p>
 

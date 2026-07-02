@@ -140,7 +140,7 @@ export default function AboutContent() {
             height={261}
             unoptimized
           />
-          <h1 className={`font-lexend ${fluid.heading} font-extrabold tracking-tight mb-6 leading-snug ${text}`}>
+          <h1 className={`font-lexend ${fluid.heading} font-extrabold tracking-tight mb-0 leading-snug ${text}`}>
             hello!
           </h1>
           <div

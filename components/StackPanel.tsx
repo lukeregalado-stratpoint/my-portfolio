@@ -13,7 +13,7 @@ const TAG_W   = 323;
 const TAG_H   = 74;
 const TITLE_W = 370;
 const TITLE_H = 109;
-const PEEK_PX = 100; // how much of a retracted tag stays visible
+const PEEK_PX = 60; // how much of a retracted tag stays visible
 
 
 export function StackPanel({ allTags, activeFilters, onToggle }: StackPanelProps) {
